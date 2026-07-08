@@ -1,0 +1,13 @@
+<div class="box content-box">Content-Box (Wider)</div>
+<div class="box border-box">Border-Box (Fixed Width)</div>
+
+<style>
+  .box {
+    width: 200px;
+    padding: 20px;
+    border: 5px solid #333;
+    margin: 10px;
+  }
+  .content-box { box-sizing: content-box; } /* Total width: 250px */
+  .border-box  { box-sizing: border-box; }  /* Total width: 200px */
+</style>

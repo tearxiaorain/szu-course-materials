@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Fade Transition Effect</title>
+    <style>
+        /* 转场动画css样式 */
+        .image-container {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 1s ease-in-out,
+                        opacity 1s ease-in-out;
+        }
+
+        .first-image {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .second-image {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        .image-container:hover .first-image {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        .image-container:hover .second-image {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .automatic{
+            animation: auto 5s infinite;
+        }
+        .automatic .first-image{
+            animation: auto-1 5s infinite;
+        }
+        .automatic .second-image{
+            animation: auto-2 5s infinite;
+        }
+        @keyframes auto {}
+        @keyframes auto-1 {
+            0%, 40% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            50%, 90% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes auto-2 {
+            0%, 40% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            50%, 90% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Image Fade Transition Effect</h1>
+
+    <div class="image-container">
+        <img
+            src="http://172.31.233.204/resource/img/apple.jpg"
+            alt="First Image"
+            class="image first-image"
+            />
+        <img 
+            src="http://172.31.233.204/resource/img/pineapple.jpg"
+            alt="Second Image"
+            class="image second-image"
+            />
+    </div>
+    <div class="image-container automatic">
+        <img
+            src="http://172.31.233.204/resource/img/apple.jpg"
+            alt="First Image"
+            class="image first-image"
+            />
+        <img 
+            src="http://172.31.233.204/resource/img/pineapple.jpg"
+            alt="Second Image"
+            class="image second-image"
+            />
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>手机通讯录管理器</title>
+    <link rel="stylesheet" href="http://172.31.233.204/resource/css/11-2.css">
+</head>
+
+<body>
+    <h1>手机通讯录管理器</h1>
+    <div class="container">
+        <div class="input-group">
+            <input type="text" id="name" placeholder="请输入姓名" />
+            <input type="text" id="phone" placeholder="请输入电话号码" />
+        </div>
+        <div class="input-group">
+            <input type="button" id="addButton" value="添加" />
+        </div>
+        <div id="content">
+            <ul>
+                <!-- 初始内容 -->
+                <li>通讯录为空，请添加联系人。</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var nameInput = document.getElementById("name");
+        var phoneInput = document.getElementById("phone");
+        var contentArea = document.getElementById("content");
+        var addButton = document.getElementById("addButton");
+        var db; // 数据库实例
+
+        // TODO 实时验证姓名输入：禁止非法字符
+        nameInput.addEventListener("input", function () {
+            this.value = this.value.replace(/[^a-zA-Z\u4e00-\u9fa5\s]/g, "");
+        });
+
+
+        // TODO 实时验证电话号码输入：只允许数字
+        phoneInput.addEventListener("input", function () {
+            this.value = this.value.replace(/[^0-9]/g, "");
+        });
+
+        // 初始化 IndexedDB
+        var db;
+        var request = window.indexedDB.open("contactsDB", 1);
+
+        request.onerror = function (event) {
+            alert("数据库打开出错");
+        };
+
+        // TODO IndexedDB 的打开是异步的，所以需要在 onsuccess 回调中 更新db对象 同时调用 loadContacts() 
+        request.onsuccess = function (event) {
+            db = event.target.result; // 更新数据库对象
+            loadContacts(); // 加载联系人
+
+        };
+
+        // TODO 在onupgradeneeded中判断有没之前有无存在contacts表（对象存储），没有则创建
+        request.onupgradeneeded = function (event) {
+            db = event.target.result;
+
+            // 创建对象仓库（如果不存在）
+            if (!db.objectStoreNames.contains("contacts")) {
+                db.createObjectStore("contacts", { keyPath: "phone" });
+            }
+
+        };
+
+        // TODO function 生成单个联系人列表项。 
+        // 形式： <li>姓名 - 电话号码<button class="delete-btn">删除</button></li>
+
+        function createContactItem(name, phone) {
+            var li = document.createElement("li");
+
+            li.dataset.phone = phone; // 存储电话号码
+            li.innerHTML = `${name} - ${phone}<button class="delete-btn">删除</button>`;
+
+            return li;
+        }
+
+        // TODO 加载通讯录联系人
+        function loadContacts() {
+
+            var transaction = db.transaction(["contacts"], "readonly");
+            var store = transaction.objectStore("contacts");
+            var list = contentArea.querySelector("ul");
+            list.innerHTML = ""; // 清空列表
+
+            store.openCursor().onsuccess = function (event) {
+                var cursor = event.target.result;
+                if (cursor) {
+                    var contact = cursor.value;
+                    list.appendChild(createContactItem(contact.name, contact.phone));
+                    cursor.continue();
+                } else if (list.innerHTML === "") {
+                    list.innerHTML = "<li>通讯录为空，请添加联系人。</li>";
+                }
+            };
+
+            // var list = contentArea.querySelector("ul");
+            // list.innerHTML = "<li>通讯录为空，请添加联系人。</li>";
+
+            // TOOD 开启事务，获取对象存储，获取所有联系人，遍历生成列表项，添加到列表list中。
+        }
+
+        // 添加联系人
+        function addContact() {
+            var name = nameInput.value.trim();
+            var phone = phoneInput.value.trim();
+            // TODO 检查非空
+            if (!name) {
+                alert("姓名不能为空！");
+                return;
+            }
+            if (!phone) {
+                alert("电话号码不能为空！");
+                return;
+            }
+
+            // TODO 检查非法字符
+            var namePattern = /^[a-zA-Z\u4e00-\u9fa5\s]+$/;
+            var phonePattern = /^\d+$/;
+            if (!namePattern.test(name) || !phonePattern.test(phone)) {
+                alert("非法字符输入！");
+                return;
+            }
+
+
+            // if () {
+            //     alert("非法字符输入！");
+            //     return;
+            // }
+
+            // TODO 开启事务，获取对象存储，查询是否存在该号码，存在则询问是否覆盖，不存在则添加联系人
+            var transaction = db.transaction(["contacts"], "readwrite");
+            var store = transaction.objectStore("contacts");
+
+            // 检查号码是否已存在
+            var request = store.get(phone);
+            request.onsuccess = function (event) {
+                if (event.target.result) {
+                    if (confirm("该号码已存在，是否覆盖？")) {
+                        // 更新联系人
+                        store.put({ name: name, phone: phone }).onsuccess = function () {
+                            alert("联系人已更新！");
+                            loadContacts();
+                        };
+                    }
+                } else {
+                    // 添加新联系人
+                    store.add({ name: name, phone: phone }).onsuccess = function () {
+                        alert("联系人已添加！");
+                        loadContacts();
+                    };
+                }
+            };
+        }
+
+
+        // TODO 删除联系人:开启事务 获取对象存储 执行删除操作 成功回调 错误回调
+        function deleteContact(phone) {
+            // 
+            var transaction = db.transaction(["contacts"], "readwrite");
+            var store = transaction.objectStore("contacts");
+            var request = store.delete(phone);
+
+            request.onsuccess = function () {
+                loadContacts(); // 重新加载列表
+            };
+
+            request.onerror = function () {
+                alert("删除联系人失败");
+            };
+        }
+
+        // 事件绑定
+        addButton.addEventListener("click", addContact);
+
+        // 删除按钮事件委托
+        contentArea.addEventListener("click", function (e) {
+            if (e.target.classList.contains("delete-btn")) {
+                var phone = e.target.parentElement.dataset.phone;
+                deleteContact(phone);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

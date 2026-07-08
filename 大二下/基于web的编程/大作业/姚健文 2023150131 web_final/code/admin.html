@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员后台 - 荔荔社区</title>
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/common.css">
+    <link rel="stylesheet" href="src/css/admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="src/images/荔荔社区logo.png" alt="荔荔社区">
+                <h1>荔荔社区</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="admin.html" class="active">管理员后台</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <!-- 主题切换按钮 -->
+                <button class="theme-toggle" id="themeToggle" title="切换主题">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+                <!-- 管理员退出按钮 -->
+                <button id="logoutBtn" class="btn-logout">
+                    <i class="bi bi-box-arrow-right"></i> 退出
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="main">
+        <div class="container">
+            <h2>用户管理</h2>
+            <div class="admin-tip">
+                仅管理员账号（admin）可访问本页面。
+            </div>
+            <!-- 搜索栏 -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="搜索用户名、学号或昵称...">
+                <button id="searchBtn"><i class="bi bi-search"></i> 搜索</button>
+            </div>
+            <!-- 用户列表表格 -->
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>学号</th>
+                        <th>昵称</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <!-- 用户数据由 JS 动态渲染 -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- 操作结果提示 -->
+    <div id="adminMessage" class="admin-message" style="display:none;"></div>
+
+    <script src="src/js/common.js"></script>
+    <script src="src/js/admin.js"></script>
+</body>
+</html> 

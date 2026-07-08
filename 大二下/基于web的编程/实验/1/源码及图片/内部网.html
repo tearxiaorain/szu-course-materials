@@ -1,0 +1,352 @@
+<html>
+
+<head>
+    <title>内部网</title>
+    <style>
+        .whole {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .left {
+            width: 35%;
+        }
+
+        .right {
+            width: 65%;
+        }
+
+        .left,
+        .right {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+        }
+
+        .img_1 {
+            width: 100%;
+            height: 150px;
+            /* 固定高度 */
+            object-fit: cover;
+            /* 保持比例并裁剪 */
+            margin: 0;
+        }
+
+        .img_2 {
+            height: 100%;
+            margin: 0;
+        }
+
+        aside {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px auto;
+            width: 100%;
+            padding: 20px 30px;
+            background-color: rgb(255, 244, 244);
+            gap: 5px;
+            margin-bottom: 0;
+            margin-top: 0;
+            box-sizing: border-box;
+        }
+
+        fieldset {
+            border: 1px solid #8a8a8a;
+            width: 100%;
+            margin-bottom: 5px;
+            /* 控制fieldset与下方元素的间距 */
+            padding: 20px 15px;
+            box-sizing: border-box;
+        }
+
+        .mid {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .people {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 5%;
+            padding: 0 10px;
+            box-sizing: border-box;
+            gap: 15px;
+            background-color: rgb(255, 232, 236);
+            margin: 0;
+            align-items: center;
+        }
+
+        .left_ul {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .left_ul ul {
+            font-size: 16px;
+            padding-left: 1.2em;
+        }
+
+        .left_ul ul li {
+            margin-bottom: 12px;
+        }
+
+        .right ul li {
+            margin-bottom: 5px;
+        }
+
+        .left_ul ul,
+        .right ul ::marker {
+            font-size: 0.5em;
+        }
+
+        /* 左边[]文字*/
+        .bracket {
+            color: red;
+        }
+
+        .leftred {
+            color: rgb(164, 13, 101);
+            background-color: rgb(255, 244, 244);
+        }
+
+        .leftwhite {
+            color: rgb(255, 255, 255);
+            background: rgb(202, 29, 130);
+        }
+
+
+        input[type="text"] {
+            width: 20%;
+            margin: 10px 0;
+            margin-bottom: 0;
+            font-family: Arial;
+            padding: 3px;
+            border: none;
+            text-align: center;
+        }
+
+        input[type="submit"],
+        select {
+            height: auto;
+            width: 100px;
+            align-items: center;
+        }
+
+        select {
+            padding: 2px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border: none;
+            margin: 0;
+            background-color: #ffffff;
+            align-items: center;
+            border-spacing: 10px;
+            border-color: #ffffff;
+        }
+
+        tr {
+            margin: 0px;
+            padding: 0px;
+            align-items: center;
+            text-align: center;
+        }
+
+        td,
+        th {
+            width: 25%;
+            align-items: center;
+            text-align: center;
+            vertical-align: middle;
+            padding: 0;
+        }
+
+        .th1 {
+            background-color: rgb(200, 8, 101);
+        }
+
+        .th2 {
+            background-color: rgb(230, 80, 110);
+        }
+
+        th {
+            padding: 15px;
+            color: white;
+        }
+
+        .td1 {
+            background-color: #ffe6fc;
+        }
+
+        .td2 {
+            background-color: #fedae1;
+        }
+
+        td,
+        ul {
+            text-align: left;
+        }
+
+        legend {
+            color: rgb(164, 13, 101);
+            padding: 8px;
+        }
+
+        p {
+            border: 10px;
+        }
+
+        .time {
+            width: 100%;
+            text-align: center;
+            background-color: rgb(230, 86, 86);
+            color: white;
+            font-size: 15px;
+            padding: 5px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="whole">
+        <div class="left">
+            <img src="深圳大学logo.png" class="img_1">
+            <div class="people">
+                <img src="人头.png" class="img_2">
+                姚健文<p></p>个人中心 | 注销 | 说明
+            </div>
+            <aside>
+                <fieldset>
+                    <legend>校园公文通</legend>
+                    <div class="mid">
+                        <select name="type" size="1">
+                            <option selected>阅览用户</option>
+                            <option>学生</option>
+                            <option>教师</option>
+                        </select>
+                        <input type="submit" value="进入公文通">
+                    </div>
+                </fieldset>
+                <div>
+                    <input type="text" value="重要通知" class="leftwhite" readonly> |
+                    <input type="text" value="深大新闻" class="leftred" readonly> |
+                    <input type="text" value="学术讲座" class="leftred" readonly>
+                </div>
+                <div class="left_ul">
+                    <ul>
+                        <li><span class="bracket">[生活] </span>关于征集深圳大学第九届第二次教职工代表大会...</li>
+                        <li><span class="bracket">[行政] </span>关于启用新版实验室危废系统的通知</li>
+                        <li><span class="bracket">[行政] </span>土木与交通工程学院顺利举办财务业务专题培训会</li>
+                        <li><span class="bracket">[行政] </span>政府管理学院数据库建设专班赴经济学院、法学...</li>
+                        <li><span class="bracket">[行政] </span>人文学院召开2025年春季学期全院大会</li>
+                        <li><span class="bracket">[行政] </span>关于中层领导班子及中层领导干部2024年度...</li>
+                        <li><span class="bracket">[行政] </span>一景一世界 方寸间彰显巾帼园丁美 —— 教...</li>
+                        <li><span class="bracket">[行政] </span>强国有我潜功实学 —— 教育学部春季学期书...</li>
+                        <li><span class="bracket">[行政] </span>培训促发展 实干开新篇 -教育学部2025...</li>
+                        <li><span class="bracket">[行政] </span>共筑红色梦 领航新思政 —— 深圳大学《亲...</li>
+                    </ul>
+                </div>
+
+            </aside>
+            <div class="time">
+                2025年3月18日 星期二（查看校历）
+            </div>
+        </div>
+        <div class="right">
+            <img src="右上图.png" class="img_1">
+            <table>
+                <tr>
+                    <th class="th1">教师事务</th>
+                    <th class="th2">学术事务</th>
+                    <th class="th1">荔园生活</th>
+                    <th class="th2">网上服务</th>
+                </tr>
+                <td class="td1">
+                    <ul>
+                        <li>办事大厅</li>
+                        <li>教师邮箱@</li>
+                        <li>Blackboard</li>
+                        <li>OA系统</li>
+                        <li>教务部</li>
+                        <li>研究生院</li>
+                        <li>科学技术</li>
+                        <li>社会科学</li>
+                        <li>人力资源</li>
+                        <li>实验设备</li>
+                        <li>财务服务</li>
+                        <li>招标采购</li>
+                    </ul>
+                </td>
+                <td class="td2">
+                    <ul>
+                        <li>UOOC课程</li>
+                        <li>学生邮箱@</li>
+                        <li>本科生选课</li>
+                        <li>研究生选课</li>
+                        <li>学生工作</li>
+                        <li>事务中心</li>
+                        <li>心理咨询</li>
+                        <li>缴学杂费</li>
+                        <li>考研考博</li>
+                        <li>就业指导</li>
+                        <li>本科生成绩</li>
+                        <li>研究生成绩</li>
+                    </ul>
+                </td>
+                <td class="td1">
+                    <ul>
+                        <li>学科竞赛</li>
+                        <li>创新创业</li>
+                        <li>工会活动</li>
+                        <li>学生活动</li>
+                        <li>缤纷荔园</li>
+                        <li>网上电视</li>
+                        <li>校园融媒</li>
+                        <li>体育场馆</li>
+                        <li>勤工助学</li>
+                        <li>国际交流</li>
+                        <li>总医院</li>
+                        <li>华南医院</li>
+                    </ul>
+                </td>
+                <td class="td2">
+                    <ul>
+                        <li>图书馆</li>
+                        <li>信息服务</li>
+                        <li>校务速办</li>
+                        <li>短信平台</li>
+                        <li>会议室|校史馆</li>
+                        <li>校园卡</li>
+                        <li>故障报修</li>
+                        <li>失物招领</li>
+                        <li>后勤保障</li>
+                        <li>正版软件</li>
+                        <li>基金会</li>
+                        <li>中行网银</li>
+                    </ul>
+                </td>
+
+            </table>
+
+            <img src="右下图.png" class="img_1">
+        </div>
+    </div>
+
+</body>
+
+</html>

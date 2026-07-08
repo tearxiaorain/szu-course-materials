@@ -1,0 +1,70 @@
+/* 购物车css样式 */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+}
+body{
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container{
+    perspective: 1000px;
+}
+.animated-button{
+    padding: 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.animated-button:hover{
+    background-color: #2ecc71;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 
+                0 15px 30px rgba(0, 0, 0, 0.3); 
+}
+.animated-button:active{
+    background-color: #e74c3c;
+    transform: scale(0.98);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+}
+
+.item{
+    display: inline-block;
+    transition: all 0.5s ease;
+}
+.animated-button:active .item{
+    opacity: 1;
+    transform: translate(-150px, 0px) rotate(7200deg);
+    transition: all 0.5s ease;
+}
+
+.animated-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+}
+.animated-button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+.animated-button:active::before {
+    opacity: 0.5;
+    transform: scale(0.8);
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "username": "admin",
+    "studentId": "1111111111",
+    "nickname": "管理员",
+    "password": "88888888",
+    "interestTags": [],
+    "avatar": "src/images/DefaultAvatar.png",
+    "id": 1750516625142,
+    "role": "admin",
+    "following": [],
+    "followers": []
+  },
+  {
+    "username": "study_master",
+    "studentId": "2021001001",
+    "nickname": "学习达人",
+    "password": "111111c",
+    "interestTags": ["学习", "编程", "阅读"],
+    "avatar": "src/images/DefaultAvatar.png",
+    "id": 1750516625143,
+    "role": "user",
+    "following": [],
+    "followers": []
+  },
+  {
+    "username": "photo_lover",
+    "studentId": "2021002001",
+    "nickname": "摄影爱好者",
+    "password": "111111c",
+    "interestTags": ["摄影", "艺术", "旅行"],
+    "avatar": "src/images/DefaultAvatar.png",
+    "id": 1750516625144,
+    "role": "user",
+    "following": [],
+    "followers": []
+  },
+  {
+    "username": "campus_singer",
+    "studentId": "2021003001",
+    "nickname": "校园歌手",
+    "password": "111111c",
+    "interestTags": ["音乐", "唱歌", "表演"],
+    "avatar": "src/images/DefaultAvatar.png",
+    "id": 1750516625145,
+    "role": "user",
+    "following": [],
+    "followers": []
+  },
+  {
+    "username": "food_lover",
+    "studentId": "2021004001",
+    "nickname": "美食达人",
+    "password": "111111c",
+    "interestTags": ["美食", "烹饪", "探店"],
+    "avatar": "src/images/DefaultAvatar.png",
+    "id": 104,
+    "role": "user",
+    "following": [],
+    "followers": []
+  },
+  {
+    "username": "sports_enthusiast",
+    "studentId": "2021005001",
+    "nickname": "运动健将",
+    "password": "111111c",
+    "interestTags": ["运动", "篮球", "健身"],
+    "avatar": "src/images/DefaultAvatar.png",
+    "id": 105,
+    "role": "user",
+    "following": [],
+    "followers": []
+  }
+] 

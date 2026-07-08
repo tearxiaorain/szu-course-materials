@@ -1,0 +1,404 @@
+/* 首页特定样式 */
+
+/* 主要内容区 */
+.main {
+    padding: 30px 0;
+}
+
+.main .container {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+}
+
+/* 内容切换栏 */
+.content-tabs {
+    grid-column: 1 / -1;
+    display: flex;
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    padding: 15px 0;
+    text-align: center;
+    font-weight: 500;
+    color: var(--text-color);
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.tab.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab:hover {
+    color: var(--primary-color);
+}
+
+/* 侧边栏 */
+.sidebar {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.guest-card,
+.hot-topics,
+.recommended-users {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.guest-card h3,
+.hot-topics h3,
+.recommended-users h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.guest-card p {
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.hot-topics ul li {
+    margin-bottom: 10px;
+}
+
+.hot-topics ul li a {
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.hot-topics ul li a:hover {
+    opacity: 0.8;
+}
+
+.recommended-users ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.recommended-users ul li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.recommended-users img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-brief {
+    flex: 1;
+}
+
+.user-brief h4 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.user-brief p {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* 动态内容区 */
+.posts-container {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.create-post {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.post-input {
+    display: flex;
+}
+
+.post-input img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.input-area {
+    flex: 1;
+}
+
+.input-area textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-actions button {
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.post-actions button:hover {
+    background-color: var(--bg-color);
+}
+
+.post-actions button i {
+    margin-right: 5px;
+}
+
+.btn-publish {
+    background-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+.btn-publish:hover {
+    background-color: var(--primary-dark) !important;
+}
+
+/* 动态列表 */
+.post-item {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-info {
+    flex: 1;
+}
+
+.post-info h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.post-meta {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.post-content {
+    margin-bottom: 15px;
+}
+
+.post-content p {
+    margin-bottom: 10px;
+}
+
+.post-images {
+    margin-top: 15px;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.post-images img {
+    width: 100%;
+    border-radius: var(--radius);
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.post-actions {
+    display: flex;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+.post-actions button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.post-actions button:hover {
+    color: var(--primary-color);
+}
+
+.post-actions button i {
+    margin-right: 5px;
+}
+
+.post-comments {
+    margin-top: 15px;
+}
+
+.comment-item {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.comment-item img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment-content {
+    flex: 1;
+    background-color: var(--bg-color);
+    border-radius: var(--radius);
+    padding: 10px;
+}
+
+.comment-content h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.comment-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 12px;
+    color: var(--text-lighter);
+}
+
+.comment-actions span {
+    margin-right: 10px;
+}
+
+.comment-actions button {
+    margin-right: 10px;
+    color: var(--text-lighter);
+}
+
+.comment-actions button:hover {
+    color: var(--primary-color);
+}
+
+.comment-input {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.comment-input img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment-input input {
+    flex: 1;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    margin-right: 10px;
+}
+
+.btn-comment {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 18px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.btn-comment:disabled {
+    background-color: var(--text-lighter);
+    cursor: not-allowed;
+}
+
+/* 加载更多 */
+.load-more {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .main .container {
+        grid-template-columns: 1fr 250px;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        grid-column: 1;
+        grid-row: 3;
+    }
+    
+    .content-tabs {
+        position: sticky;
+        top: 60px;
+        z-index: 90;
+    }
+}

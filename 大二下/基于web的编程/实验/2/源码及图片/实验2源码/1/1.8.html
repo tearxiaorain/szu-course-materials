@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的学习</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: #f2f7ff;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* TODO 基于实验要求补充缺少的CSS */
+
+        .header{
+            width: 100%;
+            position: fixed;
+            top: 0;
+            background-color: #3a86ff;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+            z-index: 100;
+        }
+        .header-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-nav .nav-list{
+            display: flex;
+            justify-content: center;
+        }
+        .nav-item a{
+            display: block;
+            padding: 6px 15px;
+            border-radius: 4px;
+        }
+        .nav-item:hover{
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .dashboard-container{
+            display: flex;
+            margin: 74px auto 20px;
+            max-width: 1400px;
+            gap: 20px;
+        }
+        .sidebar{
+            width: 300px;
+            position: sticky;
+            top: 74px;
+            height: calc(100vh - 100px);
+            background-color: white;
+        }
+
+        .main-content{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .overview-cards{
+            display: flex;
+            gap: 20px;
+        }
+        .card{
+            display: flex;
+            background-color: white;
+            justify-content: space-between;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            min-width: 200px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .card:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .card-title{
+            font-size: 14px;
+            color: #59636f;
+            margin-bottom: 10px;
+        }
+        .card-value{
+            font-size: 24px;
+            font-weight: bold;
+            color: #12263f;
+            margin-bottom: 5px;
+        }
+        .card-detail{
+            font-size: 12px;
+            color: #8392a5;
+        }
+        .card-icon{
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            font-size: 40px;
+            opacity: 0.2;
+            color: #3a86ff;
+        }
+
+        .rank-badge{
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        .ranking-item{
+            display: grid;
+            grid-template-columns: 100px 1fr 80px;
+        }
+
+        .notification-panel{
+            width: 280px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 20px;
+        }
+        .notification-list{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .notification-item {
+            display: flex;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f5f8fa;
+            transition: all 0.3s ease;
+        }
+        .notification-item:hover {
+            background-color: #e0ebff;
+        }
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #e0ebff;
+            border-radius: 50%;
+            color: #3a86ff;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+        .notification-content h5 {
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+        .notification-time {
+            font-size: 12px;
+            color: #8392a5;
+        }
+
+        
+        .floating-actions{
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        .float-btn{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .footer {
+            background-color: #12263f;
+            color: white;
+            padding-top: 40px;
+            margin-top: 40px;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .user-avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+        }
+        .student-col {
+            display: flex;
+            align-items: center;
+        }
+        .student-col img {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 1000px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar, .main-content, .notification-panel {
+                width: 100%;
+                margin: 20px;
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <div class="header-container">
+            <h3>web课程</h3>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#" class="active">首页</a></li>
+                    <li class="nav-item"><a href="#">我的学习</a></li>
+                    <li class="nav-item"><a href="#">在线课堂</a></li>
+                    <li class="nav-item"><a href="#">学习社区</a></li>
+                    <li class="nav-item"><a href="#">知识中心</a></li>
+                    <li class="nav-item"><a href="#">我的测试</a></li>
+                    <li class="nav-item"><a href="#">活动中心</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <div class="user-menu">
+                    <img src="http://172.31.233.204/resource/img/earth.png" alt="用户头像" class="user-avatar">
+                    <span class="user-name">张三</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <div class="dashboard-container">
+        <!-- 左侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>学习进度</h3>
+            </div>
+            <div class="progress-list">
+                <div class="progress-card active">
+                    <i class="fas fa-check-circle progress-icon completed"></i>
+                    <div class="progress-info">
+                        <h4>面向对象程序设计基本概念</h4>
+                        <div class="progress-meta">
+                            <span class="progress-duration">已完成 - 3小时20分</span>
+                            <span class="progress-score">92.5%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-card">
+                    <i class="fas fa-check-circle progress-icon completed"></i>
+                    <div class="progress-info">
+                        <h4>学习计算机技术在教育中的应用</h4>
+                        <div class="progress-meta">
+                            <span class="progress-duration">已完成 - 1小时45分</span>
+                            <span class="progress-score">85%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-card">
+                    <i class="fas fa-check-circle progress-icon completed"></i>
+                    <div class="progress-info">
+                        <h4>课程设计方法与技术实现</h4>
+                        <div class="progress-meta">
+                            <span class="progress-duration">已完成 - 2小时30分</span>
+                            <span class="progress-score">88.7%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-card">
+                    <i class="fas fa-circle progress-icon pending"></i>
+                    <div class="progress-info">
+                        <h4>数据结构与算法入门</h4>
+                        <div class="progress-meta">
+                            <span class="progress-duration">未开始</span>
+                            <span class="progress-score">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-card">
+                    <i class="fas fa-circle progress-icon pending"></i>
+                    <div class="progress-info">
+                        <h4>前端开发框架实战</h4>
+                        <div class="progress-meta">
+                            <span class="progress-duration">未开始</span>
+                            <span class="progress-score">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 课程概览 -->
+            <section class="overview-cards">
+                <div class="card statistic-card">
+                    <div class="card-content">
+                        <h3 class="card-title">学习总分</h3>
+                        <div class="card-value">90.52</div>
+                        <div class="card-detail">超过了60%的同学</div>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+
+                <div class="card statistic-card">
+                    <div class="card-content">
+                        <h3 class="card-title">学习总分</h3>
+                        <div class="card-value">90.52</div>
+                        <div class="card-detail">超过了60%的同学</div>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+
+                <div class="card statistic-card">
+                    <div class="card-content">
+                        <h3 class="card-title">学习总分</h3>
+                        <div class="card-value">90.52</div>
+                        <div class="card-detail">超过了60%的同学</div>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+
+                <div class="card statistic-card">
+                    <div class="card-content">
+                        <h3 class="card-title">学习总分</h3>
+                        <div class="card-value">90.52</div>
+                        <div class="card-detail">超过了60%的同学</div>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 排行榜 -->
+            <section class="ranking-section">
+                <div class="section-header">
+                    <h2>学习排行榜</h2>
+                    <a href="#" class="view-more">查看更多 ></a>
+                </div>
+                <div class="ranking-container">
+                    <div class="ranking-header">
+                        <span class="rank-col">排名</span>
+                        <span class="student-col">学生</span>
+                        <span class="score-col">分数</span>
+                    </div>
+                    <div class="ranking-list">
+                        <div class="ranking-item">
+                            <div class="rank-col">
+                                <div class="rank-badge gold">1</div>
+                            </div>
+                            <div class="student-col">
+                                <img src="http://172.31.233.204/resource/img/earth.png" alt="学生头像">
+                                <div class="student-name">甲同学</div>
+                            </div>
+                            <div class="score-col">37</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="rank-col">
+                                <div class="rank-badge silver">2</div>
+                            </div>
+                            <div class="student-col">
+                                <img src="http://172.31.233.204/resource/img/earth.png" alt="学生头像">
+                                <div class="student-name">乙同学</div>
+                            </div>
+                            <div class="score-col">37</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="rank-col">
+                                <div class="rank-badge bronze">3</div>
+                            </div>
+                            <div class="student-col">
+                                <img src="http://172.31.233.204/resource/img/earth.png" alt="学生头像">
+                                <div class="student-name">丙同学</div>
+                            </div>
+                            <div class="score-col">32</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="rank-col">
+                                <div class="rank-badge">4</div>
+                            </div>
+                            <div class="student-col">
+                                <img src="http://172.31.233.204/resource/img/earth.png" alt="学生头像">
+                                <div class="student-name">丁同学</div>
+                            </div>
+                            <div class="score-col">32</div>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <div class="rank-col">
+                                <div class="rank-badge">5</div>
+                            </div>
+                            <div class="student-col">
+                                <img src="http://172.31.233.204/resource/img/earth.png" alt="学生头像">
+                                <div class="student-name">王同学</div>
+                            </div>
+                            <div class="score-col">32</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 右侧通知栏 -->
+        <aside class="notification-panel">
+            <!-- 通知 -->
+            <h3>通知</h3>
+            <div class="notification-list">
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h5>通知1...11111</h5>
+                        <div class="notification-time">5小时前</div>
+                    </div>
+
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h5>通知2...22222222</h5>
+                        <div class="notification-time">5小时前</div>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <div class="notification-content">
+                        <h5>通知3...333333333333</h5>
+                        <div class="notification-time">5小时前</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- 悬浮操作按钮 -->
+    <div class="floating-actions">
+        <button class="float-btn help-btn" title="帮助中心">
+            <i class="fas fa-question-circle"></i>
+        </button>
+        <button class="float-btn feedback-btn" title="反馈">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        <button class="float-btn back-to-top" title="回到顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <!-- 页脚 -->
+    <!-- TODO 补充下面的HTML结构 -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <h5>© 2025 web课程</h5>
+        </div>
+    </footer>
+
+</body>
+
+</html> 

@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>评论区</title>
+        <style>
+            article,form {
+                margin: 20px auto;
+                max-width: 600px;
+                width: 90%;
+                padding: 20px;
+                border: 1px solid #000000;
+                border-radius: 4px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            fieldset {
+                border: 1px solid #000000;
+                border-radius: 4px;
+            }
+            p{
+                border: 10px;
+            }
+            h1, h3 {
+                color: rgb(0, 0, 0);
+                text-align: center;
+            }
+            input[type="text"],textarea,select{
+                width: 100%;
+                margin: 8px 0;
+                font-family: Arial;
+                padding: 8px;
+                border: 1px solid #000000;
+                border-radius: 4px;
+            }
+            textarea{
+                height: 100px;
+            }
+            input[type="submit"]{
+                margin: 5px 0;
+                padding: 8px;
+                background-color: rgb(9, 165, 35);
+                color: rgb(255, 255, 255);
+                border: none;
+                border-radius: 4px;
+            }
+        </style>
+    </head> 
+    <body>
+        <h1>评论区</h1>
+        <h3>已有评论</h3>
+        <article>
+            <p><strong>用户1</strong>: 这是一个非常有意思的帖子！</p>
+            <p><strong>用户2</strong>: 我完全同意上面的评论。</p>
+            <p><strong>用户3</strong>: 感谢分享这个内容！</p>
+        </article>
+        <hr width="700">
+        <form>
+            <fieldset>
+                <legend><strong>提交新评论</strong></legend><br>
+                <strong>昵称</strong>:
+                <input type = "text">
+                <strong>评论内容: </strong>
+                <textarea name = "info" wrap = "virtual"></textarea><br>
+                <strong>评论类别: </strong>
+                <select name = "type" size = "1" >
+                    <option selected>问题</option>
+                    <option>回答</option>
+                    <option>评价</option>
+                </select>
+                <input type = "checkbox"><strong> 我确认我是18岁以上</strong><br>
+                <input type= "submit" value="提交评论">
+            </fieldset>
+        </form>
+    </body>
+</html>

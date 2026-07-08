@@ -1,0 +1,101 @@
+{
+  "userPosts": {
+    "1750516625142": [
+      {
+        "id": 1,
+        "userId": 1750516625142,
+        "username": "admin",
+        "nickname": "管理员",
+        "avatar": "src/images/DefaultAvatar.png",
+        "content": "今天参加了校园歌手大赛，感觉很棒！#校园活动 #音乐",
+        "images": ["src/images/SZU1.jpg", "src/images/SZU2.jpg"],
+        "publishTime": "2023-11-15T14:30:00.000Z",
+        "likes": 42,
+        "comments": [
+          {
+            "id": 1,
+            "userId": 101,
+            "username": "李四",
+            "nickname": "李四",
+            "avatar": "src/images/DefaultAvatar.png",
+            "content": "太棒了！期待你的表演",
+            "publishTime": "2023-11-15T15:00:00.000Z",
+            "likes": 3
+          },
+          {
+            "id": 2,
+            "userId": 102,
+            "username": "王五",
+            "nickname": "王五",
+            "avatar": "src/images/DefaultAvatar.png",
+            "content": "加油！你一定可以的",
+            "publishTime": "2023-11-15T15:30:00.000Z",
+            "likes": 1
+          }
+        ],
+        "shares": 3,
+        "tags": ["校园活动", "音乐"]
+      },
+      {
+        "id": 2,
+        "userId": 1750516625142,
+        "username": "admin",
+        "nickname": "管理员",
+        "avatar": "src/images/DefaultAvatar.png",
+        "content": "图书馆的学习氛围真好，期末复习加油！#学习 #期末",
+        "images": ["src/images/note.jpg"],
+        "publishTime": "2023-11-10T09:15:00.000Z",
+        "likes": 18,
+        "comments": [
+          {
+            "id": 3,
+            "userId": 103,
+            "username": "赵六",
+            "nickname": "赵六",
+            "avatar": "src/images/DefaultAvatar.png",
+            "content": "一起加油！",
+            "publishTime": "2023-11-10T10:00:00.000Z",
+            "likes": 2
+          }
+        ],
+        "shares": 0,
+        "tags": ["学习", "期末"]
+      },
+      {
+        "id": 3,
+        "userId": 1750516625142,
+        "username": "admin",
+        "nickname": "管理员",
+        "avatar": "src/images/DefaultAvatar.png",
+        "content": "和朋友一起参加了志愿者活动，帮助社区清理环境，感觉很有意义！#志愿者 #环保",
+        "images": ["src/images/poster.jpg"],
+        "publishTime": "2023-11-05T16:45:00.000Z",
+        "likes": 36,
+        "comments": [
+          {
+            "id": 4,
+            "userId": 104,
+            "username": "钱七",
+            "nickname": "钱七",
+            "avatar": "src/images/DefaultAvatar.png",
+            "content": "很有意义的活动，下次叫上我！",
+            "publishTime": "2023-11-05T17:00:00.000Z",
+            "likes": 5
+          },
+          {
+            "id": 5,
+            "userId": 105,
+            "username": "孙八",
+            "nickname": "孙八",
+            "avatar": "src/images/DefaultAvatar.png",
+            "content": "保护环境，人人有责",
+            "publishTime": "2023-11-05T17:15:00.000Z",
+            "likes": 3
+          }
+        ],
+        "shares": 7,
+        "tags": ["志愿者", "环保"]
+      }
+    ]
+  }
+} 

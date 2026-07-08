@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>个人简历</title>
+    <style>
+        .u1 {
+            list-style-type: disc;
+        }
+
+        .u2 {
+            list-style-type: square;
+        }
+
+        .u3 {
+            list-style-type: circle;
+        }
+        ul {
+            margin-bottom: 8px;
+        }
+        ul li {
+            margin-bottom: 12px;
+        }
+
+        .whole {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 40px;
+            width: 60%;
+            margin: auto;
+        }
+        .left{
+            width: 40%;
+        }
+        .right{
+            width: 60%;
+        }
+        .man{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 align="center">张三的个人简历</h1>
+    <hr width=70%>
+    <div class="whole">
+        <div class="left">
+            <h3>个人信息</h3>
+            <img src="张三.png" width="240px"><br>
+            <div class="man">
+                姓名：张三<br>
+                年龄：22岁<br>
+                邮箱：<a href="">zhangsan@example.com</a><br>
+            </div>
+            <h3>教育背景</h3>
+            <ul class="u1">
+                <li>深圳大学 计算机与软件学院</li>
+            </ul>
+        </div>
+        <div class="right">
+            <h3>项目经历</h3>
+            <ul class="u2">
+                <li><strong>WebOJ系统</strong></li>
+                <li><strong>项目描述：</strong>团队协作实现前端自动化校验系统，实现了题目发布、提交、校验等功能。</li>
+                <li><strong>技术栈：</strong>Vue.js、Java Springboot</li>
+                <li><strong>项目链接：</strong><a href="">个人项目链接</a></li>
+            </ul><br>
+            <h3>技能特长</h3>
+            <ul class="u3">
+                <li>熟练掌握HTML、CSS、JavaScript等前端技术</li>
+                <li>熟悉Vue.js、React等主流前端框架</li>
+                <li>了解Node.js，能够使用Express进行后端开发</li>
+                <li>具备良好的团队协作和沟通能力</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

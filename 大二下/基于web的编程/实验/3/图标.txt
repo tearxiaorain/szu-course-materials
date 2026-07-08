@@ -1,0 +1,14 @@
+http://172.31.233.204/resource/img/exp9/bg1.png
+http://172.31.233.204/resource/img/exp9/bg2.png
+http://172.31.233.204/resource/img/exp9/bg3.png
+http://172.31.233.204/resource/img/exp9/course.svg
+http://172.31.233.204/resource/img/exp9/home.svg
+http://172.31.233.204/resource/img/exp9/note.svg
+http://172.31.233.204/resource/img/exp9/tool.svg
+http://172.31.233.204/resource/img/exp9/user.svg
+http://172.31.233.204/resource/img/exp9/favicon.ico
+
+http://172.31.233.204/resource/img/exp10/player1.png
+http://172.31.233.204/resource/img/exp10/player2.png
+http://172.31.233.204/resource/img/exp10/player3.png
+http://172.31.233.204/resource/img/exp10/player4.png

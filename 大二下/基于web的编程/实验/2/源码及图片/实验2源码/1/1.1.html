@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html,body{
+        height: 100%;
+        margin: 0;
+      }
+      body{
+        background:linear-gradient(to right,pink,blue);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .business-card{
+        width: 300px;
+        height: 200px;
+        border: 5px solid black;
+        border-radius: 15px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      .name{
+        font-family: "Arial Black";
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .position{
+        font-style: italic;
+        color:#808080;
+      }
+      .contact-info{
+        text-decoration: underline;
+        color:blue;
+      }
+      .contact-info:hover{
+        color:darkblue;
+      }
+      .social-icon:hover{
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="business-card">
+      <div class="name">John Doe</div>
+      <div class="position">Web Designer</div>
+      <div class="contact-info">john@example.com</div>
+      <img
+        src="http://172.31.233.204/resource/img/email.png"
+        class="social-icon"
+      />
+    </div>
+  </body>
+</html>

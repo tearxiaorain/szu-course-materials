@@ -1,0 +1,132 @@
+/* 管理员后台页面样式 */
+
+.main {
+    padding: 40px 0;
+    background-color: var(--page-bg);
+    min-height: 80vh;
+}
+
+/* 退出按钮样式 */
+.btn-logout {
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.btn-logout:hover {
+    background-color: #c82333;
+}
+
+.btn-logout i {
+    font-size: 16px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.admin-tip {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 15px;
+}
+
+.search-bar button {
+    padding: 8px 18px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+.search-bar button:hover {
+    background-color: var(--primary-dark);
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.user-table th, .user-table td {
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.user-table th {
+    background-color: var(--card-bg);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.user-table tr:last-child td {
+    border-bottom: none;
+}
+
+.btn-action {
+    padding: 6px 14px;
+    margin: 0 2px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.btn-action:hover {
+    background-color: var(--primary-dark);
+}
+
+.banned {
+    color: var(--error-color);
+    font-weight: bold;
+}
+
+.admin-message {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    z-index: 9999;
+    box-shadow: var(--shadow);
+} 

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>我的学习图标优化</title>
+
+    <!-- TODO 设置网站图标 -->
+    <link rel="icon" href="http://172.31.233.204/resource/img/exp9/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="http://172.31.233.204/resource/css/exp9/9-3.css">
+    <style>
+        .carousel-item {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+            /* TODO:  背景位置、背景颜色、背景图片大小 */
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        /* 第1张、第2张、第3张 carcarousel-item背景图 */
+        /* TODO: 背景渐变 叠加 图片引用 */
+        .carousel-item:nth-of-type(1) {
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),
+                url("http://172.31.233.204/resource/img/exp9/bg1.png");
+        }
+
+        .carousel-item:nth-of-type(2) {
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),
+                url("http://172.31.233.204/resource/img/exp9/bg2.png");
+        }
+
+        .carousel-item:nth-of-type(3) {
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),
+                url("http://172.31.233.204/resource/img/exp9/bg3.png");
+        }
+
+        .carousel-item h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .carousel-item p {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* TODO 设置svg样式 */
+        svg {
+            fill: #75B9EB;
+            height: 1.5rem;
+            width: 1.5rem;
+        }
+
+        .nav-item:hover svg {
+            fill: #00ff6a;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="logo" id="realid">我的学习</div>
+        <nav class="fruit-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#">
+                        <!-- TODO 插入svg -->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon"
+                            viewBox="0 0 1024 1024" version="1.1" p-id="15664" width="200" height="200">
+                            <path
+                                d="M1021.249865 530.294668c0 25.997094-21.35947 47.083341-47.741327 47.083341-12.582573 0-23.945365-4.897543-32.450063-12.742209l-0.124843 0.122797L513.218246 143.048997l0-0.024559-1.217734-1.12973 0-0.013303L84.036463 563.826366l-0.023536-0.013303c-8.616238 8.378831-20.451798 13.563924-33.520441 13.563924-26.370601 0-47.741327-21.084201-47.741327-47.083341 0-13.326517 5.632277-25.362644 14.671141-33.916461l460.164425-453.713502c8.677637-8.900717 20.887726-14.459317 34.413787-14.459317l0 0 0 0c0.024559 0 0.024559 0 0.024559 0 0.845251 0 1.689479 0.024559 2.511193 0.074701 0.122797 0 0.274246 0.024559 0.398066 0.024559 0.721431 0.049119 1.417279 0.099261 2.13871 0.173962 0.050142 0 0.100284 0.01228 0.149403 0.01228 11.661597 1.255597 22.106484 6.66377 29.690206 14.6957l0.023536-0.024559 168.764682 163.281807 0-50.925856c0-33.133631 48.065715-25.461905 50.925856-25.461905 41.400922 0 50.924833-0.521886 50.924833 25.461905l0 152.774499 190.894701 189.887768-0.100284 0.11154C1016.301156 506.697227 1021.249865 517.89936 1021.249865 530.294668zM944.863127 613.844549l0 127.311571 0 76.386738 0 127.324874c0 25.985838-24.540929 50.925856-50.900274 50.925856L766.649236 995.793588l-0.023536-381.949039L588.387249 613.844549l0 381.949039L130.063753 995.793588c-26.371624 0-50.925856-24.940019-50.925856-50.925856L79.137897 817.543881l0-76.386738L79.137897 613.844549l432.861592-413.045267L944.863127 613.844549zM461.075679 613.844549 231.913419 613.844549l0 203.700355 229.16226 0L461.075679 613.844549z"
+                                p-id="15665" />
+                        </svg>
+                        主页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <!-- TODO 插入svg -->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon"
+                            viewBox="0 0 1024 1024" version="1.1" p-id="12954" width="200" height="200">
+                            <path d="M0 310.4l511.9 306.2L1024 310.4 512 0zM512 1024l283.6-169.5V515.2L510 683.6z" />
+                            <path d="M512 1024L228.4 854.5V515.2L514 683.6z" p-id="12956" />
+                        </svg>
+                        课程</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <!-- TODO 插入svg -->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon"
+                            viewBox="0 0 1024 1024" version="1.1" p-id="17958" width="200" height="200">
+                            <path
+                                d="M808.9 150.2H276c-43.1 0-78 35.9-78 80.3V794c0 44.4 34.9 80.3 78 80.3h527.3c11.6 0 20.9-9.4 20.9-20.9V165.5c0-8.4-6.9-15.3-15.3-15.3z m-521.5 44.2h154.5v294.1l-64.2-47.9-10.9-8.2-11.1 7.9-68.3 49V194.4zM785 834H275.9s-39.7-7-38.9-40.3c0-20.1 17.5-40.2 38.9-40.2H785V834z"
+                                p-id="17959" />
+                        </svg>
+                        笔记</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <!-- TODO 插入svg -->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon"
+                            viewBox="0 0 1024 1024" version="1.1" p-id="20011" width="200" height="200">
+                            <path
+                                d="M290.082748 939.694919l262.97025-357.194238c100.788497 27.76332 212.418924-8.658194 275.641851-99.282191s58.862619-207.965495-1.991354-292.970518L689.878247 386.373815l-138.816603-96.844676L687.886893 93.40432c-100.788497-27.76332-212.418924 8.658194-275.641851 99.282191s-58.862619 207.965495 1.991354 292.970518L164.901701 856.241228l125.181047 83.453691z"
+                                p-id="20012" />
+                            <path
+                                d="M290.069445 958.708971a18.958794 18.958794 0 0 1-10.525728-3.192715l-125.19128-83.460854a18.992563 18.992563 0 0 1-8.111748-12.122085c-0.964978-4.956895 0.055259-10.117428 2.877537-14.31196l242.177691-359.907023c-59.662845-92.575442-58.010205-213.052351 5.365195-303.901475C447.561385 108.839871 531.208481 65.290005 620.423385 65.290005c24.52251 0 48.914036 3.285836 72.508407 9.782808a18.99154 18.99154 0 0 1 12.827143 11.862165 19.033495 19.033495 0 0 1-2.282996 17.337877L577.542762 284.820907l107.611903 75.089186L811.107285 179.362041a18.989493 18.989493 0 0 1 15.4816-8.131192c6.53381 0.538259 11.973706 2.914376 15.57472 7.94495 67.181075 93.875041 68.034513 220.440621 2.116197 314.927599-50.901297 72.954569-134.547369 116.503411-223.763296 116.503411-20.122293 0-40.134069-2.209318-59.699684-6.590092l-255.414157 346.951966c-3.712555 5.048993-9.485025 7.740288-15.33322 7.740288z m-98.738815-107.705024l94.209662 62.818721 252.201999-342.587565c4.659113-6.330172 12.771885-9.169847 20.363793-7.05365a235.081063 235.081063 0 0 0 62.410422 8.40953c76.797084 0 148.785651-37.461193 192.577017-100.242052 51.439556-73.733305 55.615669-170.170704 12.827143-247.765966L705.4632 397.259746a18.972097 18.972097 0 0 1-12.252045 7.833409 18.862603 18.862603 0 0 1-14.219863-3.119037l-138.798183-96.844676c-8.613168-6.014994-10.710946-17.857716-4.715395-26.471908L655.91676 105.981776a236.06753 236.06753 0 0 0-35.493375-2.672875c-76.797084 0-148.785651 37.479613-192.577017 100.260471-56.730049 81.307817-55.987129 190.237739 1.856278 271.025717a19.061125 19.061125 0 0 1 0.315178 21.681811L191.33063 851.003947z"
+                                p-id="20013" />
+                        </svg>
+                        工具
+                    </a>
+                </li>
+                <li class="nav-item my-info">
+                    <a href="#">
+                        <!-- TODO 插入svg -->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon"
+                            viewBox="0 0 1024 1024" version="1.1" p-id="21912" width="200" height="200">
+                            <path d="M512 266.24m-204.8 0a204.8 204.8 0 1 0 409.6 0 204.8 204.8 0 1 0-409.6 0Z"
+                                p-id="21913" />
+                            <path
+                                d="M409.6 532.48h204.8c180.98176 0 327.68 146.69824 327.68 327.68v20.48a81.92 81.92 0 0 1-81.92 81.92H163.84a81.92 81.92 0 0 1-81.92-81.92v-20.48c0-180.98176 146.69824-327.68 327.68-327.68z"
+                                p-id="21914" />
+                        </svg>
+                        我的
+                    </a>
+                    <div class="personal-card">
+                        <p><strong>姓名：</strong>张三</p>
+                        <p><strong>学号：</strong>123456</p>
+                        <p><strong>邮箱：</strong>zhangsan@example.com</p>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="layout-container">
+            <aside class="side-menu">
+                <ul class="side-menu-list">
+                    <!-- TODO：自行查找 https://www.iconfont.cn/，学习 icon 的引入 -->
+                    <li class="side-menu-item active"><a href="#">
+                            <svg t="1749937467366" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="4074" width="200" height="200">
+                                <path
+                                    d="M0 938.688h1024V1024H0v-85.312zM256 0v853.312H0V0h256z m768 0v853.312h-256V0h256z m-384 170.688v682.624H384V170.688h256z"
+                                    fill="#262626" p-id="4075"></path>
+                            </svg>
+                            课程分类</a></li>
+                    <li class="side-menu-item"><a href="#">
+                            <svg t="1749937875669" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="4221" width="200" height="200">
+                                <path
+                                    d="M512 1024c-205.76-241.472-326.272-411.712-361.664-510.72a384 384 0 1 1 723.072 0.832C837.76 612.928 717.312 782.848 512 1024.064z m0-512a128 128 0 1 0 0-256 128 128 0 0 0 0 256z"
+                                    fill="#262626" p-id="4222"></path>
+                            </svg>
+                            学习路径</a></li>
+                    <li class="side-menu-item"><a href="#">
+                            <svg t="1749937956221" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="4368" width="200" height="200">
+                                <path
+                                    d="M0 576.512h98.048a419.584 419.584 0 0 0 349.44 350.208V1024A516.224 516.224 0 0 1 0 576.512z m0-129.024A516.224 516.224 0 0 1 447.488 0v98.24a419.584 419.584 0 0 0-349.248 349.248H0zM576.512 1024v-97.152a419.52 419.52 0 0 0 350.336-350.336H1024A516.224 516.224 0 0 1 576.512 1024zM1024 447.488h-97.28a419.584 419.584 0 0 0-350.208-349.44V0A516.224 516.224 0 0 1 1024 447.488z m-232.32-214.144L622.848 622.72l-389.44 168.96L403.328 403.2l388.416-169.92zM512 576.512a64.512 64.512 0 1 0 0-129.024 64.512 64.512 0 0 0 0 129.024z"
+                                    fill="#262626" p-id="4369"></path>
+                            </svg>
+                            资源导航</a></li>
+                    <li class="side-menu-item"><a href="#">
+                            <svg t="1749938110807" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="4515" width="200" height="200">
+                                <path
+                                    d="M960 325.312H64v-0.384L213.312 64h597.376L960 324.736v0.64z m0 74.688V960H64V400h896zM325.312 512v74.688h373.376V512H325.312z"
+                                    fill="#262626" p-id="4516"></path>
+                            </svg>
+                            实用工具</a></li>
+                </ul>
+            </aside>
+        </div>
+
+        <main class="main-content">
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <h2>HTML 基础</h2>
+                            <p>了解 HTML 的基本语法和结构。</p>
+                        </div>
+                        <div class="carousel-item">
+                            <h2>CSS 入门</h2>
+                            <p>学习如何使用 CSS 样式化网页。</p>
+                        </div>
+                        <div class="carousel-item">
+                            <h2>JavaScript 基础</h2>
+                            <p>掌握基本的 JavaScript 编程技能。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="module-items">
+                <div class="module-item">
+                    <div class="module-info">
+                        <h3 class="module-title">HTML 基础</h3>
+                        <p class="module-description">了解 HTML 的基本语法和结构。</p>
+                        <button class="module-btn">开始学习</button>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-info">
+                        <h3 class="module-title">CSS 入门</h3>
+                        <p class="module-description">学习如何使用 CSS 样式化网页。</p>
+                        <button class="module-btn">开始学习</button>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-info">
+                        <h3 class="module-title">JavaScript 基础</h3>
+                        <p class="module-description">掌握基本的 JavaScript 编程技能。</p>
+                        <button class="module-btn">开始学习</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <p>版权所有 &copy; 2024 我的学习</p>
+    </footer>
+</body>
+
+</html>

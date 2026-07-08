@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Layout Demonstration</title>
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Float-based Layout */
+        #wrapper {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #EAEAEA;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .float-layout header {
+            background-color: #CCCCFF;
+        }
+
+        .float-layout nav {
+            float: left;
+            width: 150px;
+            padding: 10px;
+        }
+
+        .float-layout main {
+            margin-left: 170px;
+            padding: 20px;
+            background-color: #FFFFFF;
+            min-height: 200px;
+        }
+
+        .float-layout footer {
+            clear: both;
+            text-align: center;
+            font-style: italic;
+            background-color: #CCCCFF;
+            padding: 10px;
+        }
+
+        /* Flexbox Layout */
+        .flex-container {
+            display: flex;
+            width: 80%;
+            margin: 0 auto;
+            background: #EAEAEA;
+            margin-bottom: 40px;
+        }
+
+        .flex-nav {
+            width: 150px;
+            padding: 20px;
+            background: #CCCCFF;
+        }
+
+        .flex-main {
+            flex: 1;
+            padding: 20px;
+            background: #FFFFFF;
+        }
+
+        /* CSS Grid Layout */
+        .grid-container {
+            width: 80%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            background: #EAEAEA;
+            margin-bottom: 40px;
+        }
+
+        .grid-header {
+            grid-column: 1 / -1;
+            background: #CCCCFF;
+            padding: 10px;
+        }
+
+        .grid-nav {
+            padding: 20px;
+            background: #CCCCFF;
+        }
+
+        .grid-main {
+            padding: 20px;
+            background: #FFFFFF;
+        }
+
+        /* Common Styles */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .inline-list li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .block-list li {
+            margin-bottom: 10px;
+        }
+
+        .layout-example {
+            border: 2px solid #666;
+            margin: 20px 0;
+            padding: 15px;
+        }
+
+        h2 {
+            color: #444;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Float Layout Example -->
+    <div class="layout-example">
+        <h2>1. Float-based Layout</h2>
+        <div id="wrapper" class="float-layout">
+            <header>
+                <h1>Float Layout Header</h1>
+            </header>
+            <nav>
+                <ul class="block-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="directions.html">Directions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <main>
+                <p>This layout uses float property for positioning.</p>
+                <p>Notice how we need to clear floats and manage margins manually.</p>
+            </main>
+            <footer>
+                <p>Float Layout Footer</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Flexbox Layout Example -->
+    <div class="layout-example">
+        <h2>2. Flexbox Layout</h2>
+        <div class="flex-container">
+            <nav class="flex-nav">
+                <ul class="block-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="directions.html">Directions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <main class="flex-main">
+                <p>This layout uses Flexbox for positioning.</p>
+                <p>Notice how the container automatically manages the space between elements.</p>
+            </main>
+        </div>
+    </div>
+
+    <!-- CSS Grid Layout Example -->
+    <div class="layout-example">
+        <h2>3. CSS Grid Layout</h2>
+        <div class="grid-container">
+            <header class="grid-header">
+                <h1>Grid Layout Header</h1>
+            </header>
+            <nav class="grid-nav">
+                <ul class="block-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="directions.html">Directions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <main class="grid-main">
+                <p>This layout uses CSS Grid for positioning.</p>
+                <p>Notice the two-dimensional control of rows and columns.</p>
+            </main>
+        </div>
+    </div>
+
+    <!-- List Display Types -->
+    <div class="layout-example">
+        <h2>4. Display Property Examples</h2>
+        <div style="padding: 20px;">
+            <h3>Inline List (display: inline)</h3>
+            <ul class="inline-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="directions.html">Directions</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <h3>Block List (display: block)</h3>
+            <ul class="block-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="directions.html">Directions</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

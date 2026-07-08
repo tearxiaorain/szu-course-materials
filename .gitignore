@@ -42,6 +42,19 @@ desktop.ini
 *backup*/
 *备份*/
 
-# 临时文件
-*.tmp
+# 视频文件
+*.flv
+*.mp4
+*.avi
+*.wmv
+*.mov
+
+# 网络抓包
+*.pcapng
+*.pcap
+
+# Office 临时文件
 ~$*
+
+# 其他临时文件
+*.tmp

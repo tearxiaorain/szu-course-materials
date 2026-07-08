@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布动态 - 荔荔社区</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/post.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="./index.html">
+                    <h1>荔荔社区</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="./index.html">首页</a></li>
+                    <li><a href="./post.html" class="active">发布</a></li>
+                    <li><a href="#">消息</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <!-- 已登录状态 -->
+                <div class="logged-in">
+                    <div class="user-avatar">
+                        <img src="https://picsum.photos/100/100" alt="用户头像">
+                        <div class="dropdown-menu">
+                            <a href="./profile.html"><i class="ri-user-line"></i> 个人主页</a>
+                            <a href="#"><i class="ri-settings-3-line"></i> 设置</a>
+                            <a href="#" id="logout-btn"><i class="ri-logout-box-r-line"></i> 退出登录</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 未登录状态 -->
+                <div class="logged-out">
+                    <a href="./login.html" class="btn btn-text">登录</a>
+                    <a href="./register.html" class="btn btn-primary">注册</a>
+                </div>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="main">
+        <div class="post-container">
+            <div class="post-header">
+                <h2>发布动态</h2>
+                <p>分享你的校园生活和想法</p>
+            </div>
+            <form class="post-form" id="post-form">
+                <!-- 动态内容 -->
+                <div class="form-group">
+                    <textarea name="content" id="post-content" rows="5" placeholder="分享你的想法..."></textarea>
+                    <div class="error-message" id="content-error"></div>
+                </div>
+
+                <!-- 图片上传 -->
+                <div class="form-group">
+                    <div class="upload-section">
+                        <div class="upload-preview" id="image-preview"></div>
+                        <div class="upload-actions">
+                            <label for="image-upload" class="upload-btn">
+                                <i class="ri-image-add-line"></i> 添加图片
+                            </label>
+                            <input type="file" id="image-upload" multiple accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="error-message" id="image-error"></div>
+                </div>
+
+                <!-- 话题标签 -->
+                <div class="form-group">
+                    <div class="topic-section">
+                        <div class="topic-header">
+                            <i class="ri-hashtag"></i> 添加话题
+                        </div>
+                        <div class="topic-tags" id="topic-tags">
+                            <span class="topic-tag" data-topic="校园生活">校园生活</span>
+                            <span class="topic-tag" data-topic="学习交流">学习交流</span>
+                            <span class="topic-tag" data-topic="社团活动">社团活动</span>
+                            <span class="topic-tag" data-topic="美食分享">美食分享</span>
+                            <span class="topic-tag" data-topic="情感交流">情感交流</span>
+                            <span class="topic-tag" data-topic="求助问答">求助问答</span>
+                            <span class="topic-tag" data-topic="二手交易">二手交易</span>
+                            <span class="topic-tag" data-topic="校园新闻">校园新闻</span>
+                        </div>
+                        <div class="custom-topic">
+                            <input type="text" id="custom-topic" placeholder="创建自定义话题">
+                            <button type="button" id="add-topic-btn">添加</button>
+                        </div>
+                    </div>
+                    <div class="error-message" id="topic-error"></div>
+                </div>
+
+                <!-- 位置信息 -->
+                <div class="form-group">
+                    <div class="location-section">
+                        <button type="button" class="location-btn" id="location-btn">
+                            <i class="ri-map-pin-line"></i> <span id="location-text">添加位置</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 隐私设置 -->
+                <div class="form-group">
+                    <div class="privacy-section">
+                        <label>谁可以看到这条动态？</label>
+                        <div class="privacy-options">
+                            <div class="privacy-option">
+                                <input type="radio" id="privacy-public" name="privacy" value="public" checked>
+                                <label for="privacy-public">
+                                    <i class="ri-earth-line"></i> 公开
+                                    <span class="option-desc">所有人可见</span>
+                                </label>
+                            </div>
+                            <div class="privacy-option">
+                                <input type="radio" id="privacy-friends" name="privacy" value="friends">
+                                <label for="privacy-friends">
+                                    <i class="ri-user-shared-line"></i> 好友
+                                    <span class="option-desc">仅好友可见</span>
+                                </label>
+                            </div>
+                            <div class="privacy-option">
+                                <input type="radio" id="privacy-private" name="privacy" value="private">
+                                <label for="privacy-private">
+                                    <i class="ri-lock-line"></i> 私密
+                                    <span class="option-desc">仅自己可见</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 表单操作 -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-text" id="cancel-btn">取消</button>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">发布动态</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- 位置选择模态框 -->
+    <div class="modal" id="location-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>选择位置</h2>
+                <button type="button" class="close-modal" id="close-location-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="search-location">
+                    <input type="text" id="location-search" placeholder="搜索位置...">
+                </div>
+                <div class="location-list" id="location-list">
+                    <div class="location-item" data-location="荔园食堂">
+                        <i class="ri-map-pin-line"></i>
+                        <div class="location-info">
+                            <div class="location-name">荔园食堂</div>
+                            <div class="location-address">校园内 - 荔园区</div>
+                        </div>
+                    </div>
+                    <div class="location-item" data-location="中心图书馆">
+                        <i class="ri-map-pin-line"></i>
+                        <div class="location-info">
+                            <div class="location-name">中心图书馆</div>
+                            <div class="location-address">校园内 - 中心区</div>
+                        </div>
+                    </div>
+                    <div class="location-item" data-location="教学楼A">
+                        <i class="ri-map-pin-line"></i>
+                        <div class="location-info">
+                            <div class="location-name">教学楼A</div>
+                            <div class="location-address">校园内 - 教学区</div>
+                        </div>
+                    </div>
+                    <div class="location-item" data-location="学生活动中心">
+                        <i class="ri-map-pin-line"></i>
+                        <div class="location-info">
+                            <div class="location-name">学生活动中心</div>
+                            <div class="location-address">校园内 - 活动区</div>
+                        </div>
+                    </div>
+                    <div class="location-item" data-location="荔园宿舍">
+                        <i class="ri-map-pin-line"></i>
+                        <div class="location-info">
+                            <div class="location-name">荔园宿舍</div>
+                            <div class="location-address">校园内 - 宿舍区</div>
+                        </div>
+                    </div>
+                    <div class="location-item" data-location="体育馆">
+                        <i class="ri-map-pin-line"></i>
+                        <div class="location-info">
+                            <div class="location-name">体育馆</div>
+                            <div class="location-address">校园内 - 体育区</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部信息 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>荔荔社区</h2>
+                    <p>连接校园，分享生活</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>关于我们</h3>
+                        <ul>
+                            <li><a href="#">平台介绍</a></li>
+                            <li><a href="#">团队成员</a></li>
+                            <li><a href="#">联系我们</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>帮助中心</h3>
+                        <ul>
+                            <li><a href="#">使用指南</a></li>
+                            <li><a href="#">常见问题</a></li>
+                            <li><a href="#">意见反馈</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>条款政策</h3>
+                        <ul>
+                            <li><a href="#">用户协议</a></li>
+                            <li><a href="#">隐私政策</a></li>
+                            <li><a href="#">社区规范</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 荔荔社区 - 校园生活交友平台</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部 -->
+    <div class="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </div>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/post.js"></script>
+</body>
+</html>

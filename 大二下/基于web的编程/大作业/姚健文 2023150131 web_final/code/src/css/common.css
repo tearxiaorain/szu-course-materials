@@ -1,0 +1,562 @@
+/* 通用样式 */
+:root {
+    /* 亮色主题变量 */
+    --primary-color: #9e1b45;
+    --primary-light: #c04b6f;
+    --primary-dark: #7a1535;
+    --secondary-color: #f8f0f3;
+    --text-color: #333333;
+    --text-light: #666666;
+    --text-lighter: #999999;
+    --bg-color: #f5f5f5;
+    --border-color: #e0e0e0;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --error-color: #f44336;
+    --white: #ffffff;
+    --black: #000000;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --radius: 8px;
+    --transition: all 0.3s ease;
+    
+    /* 页面背景色 */
+    --page-bg: #ffffff;
+    --card-bg: #ffffff;
+    --header-bg: #ffffff;
+    --footer-bg: #f8f9fa;
+}
+
+/* 暗色主题变量 */
+[data-theme="dark"] {
+    --primary-color: #ff6b9d;
+    --primary-light: #ff8db3;
+    --primary-dark: #e55a8a;
+    --secondary-color: #2d1b2d;
+    --text-color: #ffffff;
+    --text-light: #cccccc;
+    --text-lighter: #999999;
+    --bg-color: #1a1a1a;
+    --border-color: #404040;
+    --success-color: #66bb6a;
+    --warning-color: #ffb74d;
+    --error-color: #ef5350;
+    --white: #2d2d2d;
+    --black: #ffffff;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    
+    /* 页面背景色 */
+    --page-bg: #121212;
+    --card-bg: #1e1e1e;
+    --header-bg: #1e1e1e;
+    --footer-bg: #1a1a1a;
+}
+
+/* 容器 */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-outline {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-login {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.btn-register {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 6px 12px;
+}
+
+.btn-follow {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 14px;
+}
+
+.btn-follow.following {
+    background-color: var(--text-lighter);
+}
+
+.btn-delete {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-delete:hover {
+    background-color: var(--primary-dark);
+}
+
+/* 表单元素 */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--white);
+    transition: var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(158, 27, 69, 0.2);
+}
+
+/* 头部导航 */
+.header {
+    background-color: var(--header-bg);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 36px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.nav ul {
+    display: flex;
+}
+
+.nav li {
+    margin: 0 15px;
+}
+
+.nav a {
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav a.active,
+.nav a:hover {
+    color: var(--primary-color);
+}
+
+.nav a.active::after,
+.nav a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* 主题切换按钮样式 */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    margin-right: 15px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+}
+
+.theme-toggle i {
+    transition: var(--transition);
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.auth-buttons a {
+    margin-left: 15px;
+}
+
+/* 用户信息区域 */
+.user-info {
+    position: relative;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0; /* 防止头像被压缩 */
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 36px; /* 限制最大宽度 */
+    max-height: 36px; /* 限制最大高度 */
+}
+
+.notification {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--error-color);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 150px;
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 10px 0;
+    display: none;
+}
+
+.user-info:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 8px 15px;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.dropdown-menu i {
+    margin-right: 8px;
+}
+
+/* 用户菜单样式 */
+.user-menu {
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0; /* 防止头像被压缩 */
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 36px; /* 限制最大宽度 */
+    max-height: 36px; /* 限制最大高度 */
+}
+
+/* 游客操作区域 */
+.guest-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.guest-actions .btn {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+/* 底部信息 */
+.footer {
+    background-color: var(--footer-bg);
+    padding: 40px 0 20px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.footer-logo {
+    max-width: 250px;
+}
+
+.footer-logo img {
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+.footer-logo h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.footer-logo p {
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+}
+
+.link-group {
+    margin-left: 50px;
+}
+
+.link-group h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.link-group ul li {
+    margin-bottom: 10px;
+}
+
+.link-group ul li a {
+    color: var(--text-light);
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.link-group ul li a:hover {
+    color: var(--primary-color);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-lighter);
+    font-size: 14px;
+}
+
+/* 返回顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .container {
+        max-width: 100%;
+    }
+    
+    .nav li {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 10px 15px;
+    }
+    
+    .logo {
+        margin-bottom: 10px;
+    }
+    
+    .nav {
+        order: 3;
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .nav ul {
+        justify-content: space-between;
+    }
+    
+    .nav li {
+        margin: 0;
+    }
+    
+    .user-actions {
+        margin-left: auto;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-logo {
+        margin-bottom: 30px;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .link-group {
+        margin-left: 0;
+        width: 48%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .link-group {
+        width: 100%;
+    }
+}
+
+/* Toast 消息样式 */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    color: var(--white);
+    font-weight: 500;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast-success {
+    background-color: var(--success-color);
+}
+
+.toast-error {
+    background-color: var(--error-color);
+}
+
+.toast-warning {
+    background-color: var(--warning-color);
+}
+
+.toast-info {
+    background-color: var(--primary-color);
+}
+
+/* 页面背景色 */
+body {
+    background-color: var(--page-bg);
+    color: var(--text-color);
+    transition: var(--transition);
+}

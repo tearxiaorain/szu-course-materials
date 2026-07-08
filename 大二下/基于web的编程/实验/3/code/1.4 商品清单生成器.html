@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>商品清单生成器</title>
+    <style>
+      .low-price {
+        color: green;
+      }
+      .mid-price {
+        color: blue;
+      }
+      .high-price {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>商品清单</h1>
+    <ul id="product-list">
+      <!-- 商品列表将在JavaScript中生成 -->
+    </ul>
+    <p id="total-price">
+      <!-- 总价将在JavaScript中计算并显示 -->
+    </p>
+    <script>
+      // 定义商品清单数组（不改动）
+      let products = [
+        { name: "苹果", price: 30 },
+        { name: "香蕉", price: 20 },
+        { name: "葡萄", price: 60 },
+        { name: "西瓜", price: 110 },
+        { name: "菠萝", price: 80 },
+      ];
+
+      // 请在此编写JS代码
+      // js4
+
+      // 初始化总价，遍历商品数组并生成列表项...
+      var total = 0;
+      var list = document.getElementById("product-list");
+      var total_p = document.getElementById("total-price");
+
+
+      for(product of products){
+        var listItem = document.createElement("li");
+        listItem.textContent =`${product.name} - $${product.price}`;
+        
+        // 设置颜色
+        if(product.price<50){
+            listItem.className = "low-price";
+        }else if(product.price>100){
+            listItem.className = "high-price";
+        }else{
+            listItem.className = "mid-price";
+        }
+        
+        list.appendChild(listItem);
+        total += product.price;
+      }
+
+      total_p.innerText = `总价:$${total}`;
+
+      // 注意看图的文本内容，格式，空格。
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>任务清单</title>
+    <link rel="stylesheet" href="http://172.31.233.204/resource/css/exp9/9-2.css">
+    <style>
+        .button-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .button-container button {
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        #clear-all {
+            background-color: #f44336;
+        }
+
+        #clear-completed {
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>任务清单</h1>
+    <input type="text" id="task-input" placeholder="输入新任务">
+    <button id="add-task">添加任务</button>
+    <ul id="task-list"></ul>
+    <div class="button-container">
+        <button id="clear-all">清空全部任务</button>
+        <button id="clear-completed">清空已完成任务</button>
+    </div>
+
+    <script>
+        // js7
+        var list = document.getElementById("task-list");
+        // 添加任务
+        var addbtn = document.getElementById("add-task");
+        addbtn.addEventListener("click", (event) => {
+            var task_in = document.getElementById("task-input");
+            var tasktext = task_in.value;
+            if (tasktext == "") {
+                alert("任务内容不能为空");
+            } else {
+                var item = document.createElement("li");
+                var sp = document.createElement("span");
+                var delbtn = document.createElement("button");
+                delbtn.textContent = "删除";
+                sp.innerText = tasktext;
+
+                item.appendChild(sp);
+                item.appendChild(delbtn);
+                list.appendChild(item);
+
+                // 任务状态切换、删除
+                sp.addEventListener("click", (event) => {
+                    // 根据当前状态切换删除线
+                    if (sp.style.textDecoration == "line-through") {
+                        sp.style.textDecoration = "none";
+                    } else {
+                        sp.style.textDecoration = "line-through";
+                    }
+                });
+
+                delbtn.addEventListener("click", (event) => {
+                    console.log("删除任务：" + sp.innerText);
+                    item.remove();
+                });
+
+                task_in.value = "";
+                console.log("添加任务：" + tasktext);
+            }
+        });
+        // .completed {
+        //     text-decoration: line-through;
+        // }
+
+        // // 任务状态切换、删除
+        // var tasks = list.querySelectorAll("li");
+        // tasks.forEach(task => {
+        //     var line = task.document.queryselector("span");
+        //     line.addEventListener("click", (event) => {
+        //         line.classList.toggle('completed');
+        //     });
+
+        //     var del = task.document.queryselector("button");
+        //     del.addEventListener("click", (event) => {
+        //         console.log("删除任务：" + task.innerText);
+        //         task.remove();
+        //     });
+        // });
+
+
+
+
+        // 清除全部、清楚已完成
+        var btn_c_all = document.getElementById("clear-all");
+        var btn_c_com = document.getElementById("clear-completed");
+        
+        btn_c_all.addEventListener("click", (event) => {
+            var tasks = list.querySelectorAll("li");
+            tasks.forEach(task => {
+                var sp = task.querySelector("span");
+                console.log("删除任务：" + sp.innerText);
+                task.remove();
+            });
+        });
+
+        btn_c_com.addEventListener("click", (event) => {
+            var tasks = list.querySelectorAll("li");
+            tasks.forEach(task => {
+                var sp = task.querySelector("span");
+                if (sp.style.textDecoration == "line-through") {
+                    console.log("删除任务：" + sp.innerText);
+                    task.remove();
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

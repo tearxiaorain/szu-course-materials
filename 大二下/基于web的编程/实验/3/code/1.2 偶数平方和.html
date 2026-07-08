@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document></title>
+</head>
+
+<body>
+    <script>
+        // js2
+        // 偶数判断和求平方函数
+        function isEven(num) {
+            if (num % 2 == 1)
+                return false;
+            else return true;
+        }
+        function square(num) {
+            return num * num;
+        }
+
+        // 偶数平方的过滤和求和
+        var numbers = Array.from({ length: 10 }, (_, i) => i + 1);
+        var even = numbers.filter(isEven);
+        var evenSquares = even.map(square);
+        var totalSum = evenSquares.reduce((sum, num) => sum + num);
+
+        // 输出
+        console.log(evenSquares);
+        console.log("Total even squares sum:", totalSum);
+
+    </script>
+</body>
+
+</html>

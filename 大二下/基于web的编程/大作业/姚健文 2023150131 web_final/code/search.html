@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索 - 荔荔社区</title>
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/common.css">
+    <link rel="stylesheet" href="src/css/search.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="src/images/荔荔社区logo.png" alt="荔荔社区">
+                <h1>荔荔社区</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="post.html">发布</a></li>
+                    <li><a href="search.html" class="active">搜索</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <!-- 主题切换按钮 -->
+                <button class="theme-toggle" id="themeToggle" title="切换主题">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-login">登录</a>
+                    <a href="register.html" class="btn btn-register">注册</a>
+                </div>
+                <!-- 登录后显示的用户信息 -->
+                <div class="user-info" style="display: none;">
+                    <div class="avatar">
+                        <img src="src/images/DefaultAvatar.png" alt="用户头像">
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="profile.html"><i class="bi bi-person"></i> 个人主页</a>
+                        <a href="settings.html"><i class="bi bi-gear"></i> 设置</a>
+                        <a href="#" id="logout"><i class="bi bi-box-arrow-right"></i> 退出登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="main">
+        <div class="container">
+            <!-- 搜索框 -->
+            <div class="search-container">
+                <div class="search-box-large">
+                    <input type="text" id="searchInput" placeholder="搜索内容、话题或用户..." value="">
+                    <button id="searchBtn"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+
+            <!-- 搜索类型切换栏 -->
+            <div class="search-tabs">
+                <button class="search-tab active" data-tab="content">
+                    <i class="bi bi-file-text"></i>
+                    内容
+                </button>
+                <button class="search-tab" data-tab="tags">
+                    <i class="bi bi-tags"></i>
+                    话题
+                </button>
+                <button class="search-tab" data-tab="users">
+                    <i class="bi bi-people"></i>
+                    用户
+                </button>
+            </div>
+
+            <!-- 搜索结果区域 -->
+            <div class="search-results">
+                <!-- 内容搜索结果 -->
+                <div class="search-pane active" id="contentPane">
+                    <div class="results-header">
+                        <h3>内容搜索结果</h3>
+                        <span class="results-count">找到 <span id="contentCount">0</span> 条结果</span>
+                    </div>
+                    <div class="content-results" id="contentResults">
+                        <!-- 内容搜索结果将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+
+                <!-- 话题搜索结果 -->
+                <div class="search-pane" id="tagsPane">
+                    <div class="results-header">
+                        <h3>话题搜索结果</h3>
+                        <span class="results-count">找到 <span id="tagsCount">0</span> 条结果</span>
+                    </div>
+                    <div class="tags-results" id="tagsResults">
+                        <!-- 话题搜索结果将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+
+                <!-- 用户搜索结果 -->
+                <div class="search-pane" id="usersPane">
+                    <div class="results-header">
+                        <h3>用户搜索结果</h3>
+                        <span class="results-count">找到 <span id="usersCount">0</span> 条结果</span>
+                    </div>
+                    <div class="users-results" id="usersResults">
+                        <!-- 用户搜索结果将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部信息 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="src/images/荔荔社区logo.png" alt="荔荔社区">
+                    <h2>荔荔社区</h2>
+                    <p>校园生活交友平台</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>关于我们</h3>
+                        <ul>
+                            <li><a href="#">平台介绍</a></li>
+                            <li><a href="#">团队成员</a></li>
+                            <li><a href="#">联系方式</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>帮助中心</h3>
+                        <ul>
+                            <li><a href="#">使用指南</a></li>
+                            <li><a href="#">常见问题</a></li>
+                            <li><a href="#">意见反馈</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>条款政策</h3>
+                        <ul>
+                            <li><a href="#">用户协议</a></li>
+                            <li><a href="#">隐私政策</a></li>
+                            <li><a href="#">社区规范</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 荔荔社区 - 校园社交平台</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 文件 -->
+    <script src="src/js/common.js"></script>
+    <script src="src/js/search.js"></script>
+</body>
+</html> 

@@ -1,0 +1,150 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2865
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 package edu.szu.test;\
+\
+/**\
+ * Person\uc0\u31867 \u21253 \u21547 \u20102 \u32435 \u31246 \u20154 \u30340 \u23376 \u22899 \u20010 \u25968 \u12289 \u32487 \u32493 \u25945 \u32946 \u24773 \u20917 \u12289 \u20303 \u25151 \u36151 \u27454 \u24773 \u20917 \u12289 \u31199 \u25151 \u20449 \u24687 \u12289 \u36193 \u20859 \u32769 \u20154 \u24773 \u20917 \u12289 \u20804 \u24351 \u22992 \u22969 \u20010 \u25968 \
+ */\
+class Person \{\
+    private int children_Num; //\uc0\u23376 \u22899 \u20010 \u25968 \'97\'97\u27599 \u20010 \u23376 \u22899 \u27599 \u26376 \u25187 \u38500 1000\u20803 \
+    private int is_KeepStu;  //\uc0\u26159 \u21542 \u32487 \u32493 \u25945 \u32946 \u65288 0\u65306 \u26410 \u32487 \u32493 \u25945 \u32946   1\u65306 \u25509 \u21463 \u32487 \u32493 \u25945 \u32946 \u19988 \u24403 \u24180 \u26410 \u33719 \u21462 \u21040 \u35777 \u20070 \'97\'97\u27599 \u26376 \u25187 \u38500 400\u20803   2\u65306 \u25509 \u21463 \u32487 \u32493 \u25945 \u32946 \u19988 \u24403 \u24180 \u33719 \u21462 \u21040 \u35777 \u20070 \'97\'97\u24403 \u24180 \u25187 \u38500 \u23450 \u39069 3600\u20803 \u65289 \
+    private boolean HouseLoans;  //\uc0\u26159 \u21542 \u20303 \u25151 \u36151 \u27454 \u65288 false\u65306 \u27809 \u26377   true\u65306 \u26377 \u65289 \'97\'97\u22914 \u26524 \u26377 \u65292 \u27599 \u20010 \u26376 \u25187 \u38500 1000\u20803 \
+    private int is_RentHouse;   // \uc0\u26159 \u21542 \u20303 \u25151 \u65288 0\u65306 \u27809 \u26377 \u20303 \u25151 \
+    //         1\uc0\u65306 \u22312 \u30452 \u36758 \u24066 \u12289 \u30465 \u20250 \u65288 \u39318 \u24220 \u65289 \u22478 \u24066 \u31199 \u25151 \'97\'97\u27599 \u26376 \u25187 \u38500 1500\u20803 \
+    //         2\uc0\u65306 \u22312 \u38500 \u31532 \u19968 \u39033 \u25152 \u21015 \u22478 \u24066 \u20197 \u22806 \u65292 \u24066 \u36758 \u21306 \u25143 \u31821 \u20154 \u21475 \u36229 \u36807 100\u19975 \u30340 \u22478 \u24066 \u31199 \u25151 \'97\'97\u27599 \u26376 \u25187 \u38500 1100\u20803 \
+    //         3\uc0\u65306 \u24066 \u36758 \u21306 \u25143 \u31821 \u20154 \u21475 \u19981 \u36229 \u36807 100\u19975 \u30340 \u22478 \u24066 \u31199 \u25151 \'97\'97\u27599 \u26376 \u25187 \u38500 800\u20803 \u12290 \u65289 \
+    private boolean SupportingElderly;   //\uc0\u26159 \u21542 \u36193 \u20859 \u32769 \u20154 \u65288 false\u65306 \u27809 \u26377   true\u65306 \u26377 \u65289 \'97\'97\u36193 \u20859 \u32769 \u20154 \u27599 \u20010 \u26376 \u25187 \u38500 2000\u20803 /\u20804 \u24351 \u22992 \u22969 \u20010 \u25968 +1\
+    private int sibling_Num; //\uc0\u20804 \u24351 \u22992 \u22969 \u20010 \u25968 \
+\
+    //Constructor\
+    public Person(int children_Num, int is_KeepStu, boolean is_HouseLoans, int is_RentHouse, boolean is_SupportingElderly, int sibling_Num) \{\
+        this.children_Num = children_Num;\
+        this.is_KeepStu = is_KeepStu;\
+        this.HouseLoans = is_HouseLoans;\
+        this.is_RentHouse = is_RentHouse;\
+        this.SupportingElderly = is_SupportingElderly;\
+        this.sibling_Num = sibling_Num;\
+    \}\
+\
+    //Getter\
+    public int getChildren_Num() \{\
+        return children_Num;\
+    \}\
+\
+    public int getIs_KeepStu() \{\
+        return is_KeepStu;\
+    \}\
+\
+    public boolean is_HouseLoans() \{\
+        return HouseLoans;\
+    \}\
+\
+    public int getIs_RentHouse() \{\
+        return is_RentHouse;\
+    \}\
+\
+    public boolean is_SupportingElderly() \{\
+        return SupportingElderly;\
+    \}\
+\
+    public int getSibling_Num() \{\
+        return sibling_Num;\
+    \}\
+\}\
+\
+//\uc0\u20010 \u20154 \u25152 \u24471 \u31246 \u35745 \u31639 \u22120 \
+class incomeTaxCalculator \{\
+    /**\
+     * \uc0\u35745 \u31639 \u20010 \u20154 \u25152 \u24471 \u31246 \
+     *\
+     * @param person \uc0\u32435 \u31246 \u20154 \
+     * @param salary \uc0\u24037 \u36164 (\u24050 \u25187 \u38500 \u19977 \u38505 \u19968 \u37329 )\
+     * @return\
+     */\
+    public static int cal(Person person, int salary) \{\
+        //\uc0\u23433 \u20840 \u24615 \u26816 \u26597 \
+        if (person == null) \{\
+            throw new NullPointerException("person\uc0\u20026 \u31354 ");\
+        \}\
+        if (salary < 0) \{\
+            throw new IllegalArgumentException();\
+        \}\
+\
+        //\uc0\u24212 \u32435 \u31246 \u25152 \u24471 \u39069 =\u26376 \u24230 \u25910 \u20837 -5000\u20803 \u65288 \u20813 \u24449 \u39069 \u65289 -\u19987 \u39033 \u25187 \u38500 \u65288 \u19977 \u38505 \u19968 \u37329 \u31561 \u65289 -\u19987 \u39033 \u38468 \u21152 \u25187 \u38500 -\u20381 \u27861 \u30830 \u23450 \u30340 \u20854 \u20182 \u25187 \u38500 \
+        int res = salary - 5000;\
+\
+        //\uc0\u19987 \u39033 \u38468 \u21152 \u25187 \u38500 \
+        //\uc0\u23376 \u22899 \u25945 \u32946 :\u27599 \u20010 \u23376 \u22899 \u27599 \u26376 1000\u20803 \
+        if (person.getChildren_Num() > 0) \{\
+            res -= person.getChildren_Num() * 1000;\
+        \}\
+\
+        //\uc0\u32487 \u32493 \u25945 \u32946 :\u22312 \u23398 \u21382 \u65288 \u23398 \u20301 \u65289 \u25945 \u32946 \u26399 \u38388 \u27599 \u26376 400\u20803 ,\u22312 \u21462 \u24471 \u30456 \u20851 \u35777 \u20070 \u30340 \u24403 \u24180 \u65292 \u25353 \u29031 3600\u20803 \u23450 \u39069 \u25187 \u38500 \
+        if (person.getIs_KeepStu() == 1) \{\
+            res -= 400;\
+        \} else if (person.getIs_KeepStu() == 2) \{\
+            res -= 3600;\
+        \}\
+\
+        //\uc0\u20303 \u25151 \u36151 \u27454 :\u22312 \u23454 \u38469 \u21457 \u29983 \u36151 \u27454 \u21033 \u24687 \u30340 \u24180 \u24230 \u25353 \u27599 \u26376 1000\u20803 \u25187 \u38500 \
+        if (person.is_HouseLoans()) \{\
+            res -= 1000;\
+        \}\
+\
+        //\uc0\u20303 \u25151 \u31199 \u37329 : 1\u12289 \u30452 \u36758 \u24066 \u12289 \u30465 \u20250 \u65288 \u39318 \u24220 \u65289 \u22478 \u24066 :\u27599 \u26376 1500\u20803 \
+        //         2\uc0\u12289 \u24066 \u36758 \u21306 \u25143 \u31821 \u20154 \u21475 \u36229 \u36807 100\u19975 \u30340 \u22478 \u24066 \u65306 \u27599 \u26376 1100\u20803 \
+        //         3\uc0\u12289 \u24066 \u36758 \u21306 \u25143 \u31821 \u20154 \u21475 \u19981 \u36229 \u36807 100\u19975 \u30340 \u22478 \u24066 \u65306 \u27599 \u26376 800\u20803 \
+        if (person.getIs_RentHouse() == 1) \{\
+            res -= 1500;\
+        \} else if (person.getIs_RentHouse() == 2) \{\
+            res -= 1100;\
+        \} else if (person.getIs_RentHouse() == 3) \{\
+            res -= 800;\
+        \}\
+\
+        //\uc0\u36193 \u20859 \u32769 \u20154 : \u27599 \u20010 \u26376 \u25187 \u38500 2000\u20803 /\u20804 \u24351 \u22992 \u22969 \u20010 \u25968 +1\
+        if (person.is_SupportingElderly()) \{\
+            res -= 2000 / (person.getSibling_Num() + 1);\
+        \}\
+\
+        //\uc0\u35745 \u31639 \u20010 \u20154 \u25152 \u24471 \u31246 \u65306 \u20010 \u20154 \u25152 \u24471 \u31246 =\u24212 \u32435 \u31246 \u25152 \u24471 \u39069 *\u31246 \u29575 \
+        double tax = res;\
+        //\uc0\u26681 \u25454 \u38454 \u26799 \u31246 \u29575 \u35745 \u31639 \u32467 \u26524 \
+        if (res < 0) \{\
+            tax = 0;\
+        \} else if (res < 3000) \{         //0~3000\uc0\u20803  \u31246 \u29575 3%\
+            tax = res * 0.03;\
+        \} else if (res < 12000) \{    //3000~12000\uc0\u20803  \u31246 \u29575 10%\
+            tax = 90 + (res - 3000) * 0.1;\
+        \} else if (res < 25000) \{    //12000~25000\uc0\u20803  \u31246 \u29575 20%\
+            tax = 2290 + (res - 12000) * 0.2;\
+        \} else if (res < 35000) \{    //25000~35000\uc0\u20803  \u31246 \u29575 25%\
+            tax = 4890 + (res - 25000) * 0.25;\
+        \} else if (res < 55000) \{    //35000~55000\uc0\u20803  \u31246 \u29575 30%\
+            tax = 7390 + (res - 35000) * 0.3;\
+        \} else if (res < 80000) \{    //55000~80000\uc0\u20803  \u31246 \u29575 35%\
+            tax = 13390 + (res - 55000) * 0.35;\
+        \} else \{                      //\uc0\u22823 \u20110 80000\u37096 \u20998 \u31246 \u29575 40%\
+            tax = 22140 + (res - 80000) * 0.45;\
+        \}\
+\
+        return (int) tax; //\uc0\u36820 \u22238 \u32467 \u26524 \u21462 \u25972 \
+    \}\
+\}\
+\
+public class test \{\
+    public static void main(String[] args) \{\
+        /**\
+         * \uc0\u36827 \u34892 \u27979 \u35797 \u65306 \u26679 \u20363 \u65306 \u26377 \u20004 \u20010 \u23401 \u23376 \u65292 \u25509 \u21463 \u32487 \u32493 \u25945 \u32946 \u19988 \u24403 \u24180 \u26410 \u33719 \u21462 \u21040 \u35777 \u20070 \u65292 \u26377 \u20303 \u25151 \u36151 \u27454 \u65292 \u27809 \u26377 \u31199 \u25151 \u65292 \u26377 \u36193 \u20859 \u32769 \u20154 \u65292 \u26377 \u19968 \u20010 \u21733 \u21733 \u65292 \u26376 \u34218 50000\u20803 \
+         */\
+        Person person = new Person(2, 1, true, 0, true, 1);\
+        int cal = incomeTaxCalculator.cal(person, 50000);\
+        System.out.println(cal);\
+    \}\
+\}\
+}

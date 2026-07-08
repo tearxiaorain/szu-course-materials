@@ -1,0 +1,63 @@
+/* 博客主页css样式 */
+*{
+    font-family: 宋体;
+    line-height: 1.5em;
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 50%;
+    margin: 0 auto;
+}
+
+header{
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+header nav ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul a{
+    color: white;
+}
+
+.container{
+    display: flex;
+}
+
+.text-content{
+    flex-basis: 30%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: justify;
+}
+
+.blog-content{
+    display: flex;
+    flex-basis: 70%;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+article{
+    margin-bottom: 20px;
+    padding: 15px;
+    padding-top: 0;
+    border-bottom: 1px solid rgb(187, 187, 187);
+}
+
+footer{
+    background-color: #333;
+    color:white;
+    text-align: center;
+    padding: 15px;
+}

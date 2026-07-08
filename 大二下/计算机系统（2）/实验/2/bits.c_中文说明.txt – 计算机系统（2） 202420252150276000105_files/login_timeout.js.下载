@@ -1,0 +1,151 @@
+window.bbSessionActivityTimer =
+{
+    startTimer : function( time, ajaxNonce )
+    {
+      if (window.page.util.insideUltra()) {
+        return;
+      }
+      this.durationBeforeShowingDialog = time;
+      this.ajaxNonce = ajaxNonce;
+      this.setBbTimer( this.checkTimeRemainingBeforeTimeout.bind( this ), this.durationBeforeShowingDialog );
+
+      // Pre-load images used by the Session Inactivity Warning Dialog
+      // ahead of time to prevent the assets from being downloaded at the time of displaying
+      // the dialog, which causes the BBSession to be extended unintentionally.
+      // When we upgrade the JQuery Dialog library, we will need to make sure any new images it brings in
+      // are also pre-loaded by login_timeout.js
+      this.preloadWoff( '/themes/as_2015/fonts/open-sans/open-sans-300.woff' );
+      this.preloadWoff( '/themes/as_2015/fonts/open-sans/open-sans-300italic.woff' );
+      this.preloadImage( '/javascript/jquery/css/jquery-ui/images/ui-icons_888888_256x240.png' );
+      this.preloadImage( '/javascript/jquery/css/jquery-ui/images/ui-icons_222222_256x240.png' );
+      this.preloadImage( '/javascript/jquery/css/jquery-ui/images/ui-bg_glass_75_e6e6e6_1x400.png' );
+      this.preloadImage( '/javascript/jquery/css/jquery-ui/images/ui-bg_glass_75_dadada_1x400.png' );
+      this.preloadImage( '/javascript/jquery/css/jquery-ui/images/ui-icons_454545_256x240.png' );
+      this.preloadImage( '/javascript/jquery/css/jquery-ui/images/ui-bg_highlight-soft_75_cccccc_1x100.png' );
+    },
+    preloadImage : function( url )
+    {
+      var img = new Image();
+      img.src = url;
+    },
+    preloadWoff: function( url )
+    {
+      var linkObj = document.createElement('LINK');
+      linkObj.setAttribute("rel", "preload");
+      linkObj.setAttribute("type", "font/woff2");
+      linkObj.setAttribute("href", url);
+      linkObj.setAttribute("as", "font");
+      // crossorigin=anonymous is required, otherwise the browser ignores the cache request
+      linkObj.setAttribute("crossorigin", "anonymous")
+      document.head.appendChild(linkObj);
+    },
+    checkTimeRemainingBeforeTimeout : function()
+    {
+      $j.ajax(
+      {
+          type : "GET",
+          url : "/learn/api/v1/utilities/timeUntilBbSessionInactive",
+          context : this,
+          headers :
+          {
+            'Suppress-Session-Timestamp-Update' : true,
+            'Include-Session-Last-Access-Time' : true
+          },
+          contentType : "application/json",
+          success : function( data, status, jqXHR )
+          {
+            if ( data.timeBeforeTimeout > 0 )
+            {
+              if ( data.timeBeforeTimeout <= data.timeBeforeTimeoutToShowWarning )
+              {
+                this.showDialog( new Date().getTime() + data.timeBeforeTimeout );
+              }
+              else
+              {
+                let durationToWaitBeforeShowingWarning = data.timeBeforeTimeout - data.timeBeforeTimeoutToShowWarning;
+                // Set new timer
+                this.setBbTimer( this.checkTimeRemainingBeforeTimeout.bind( this ), durationToWaitBeforeShowingWarning );
+              }
+            }
+          },
+          error : function( jqXHR, status )
+          {
+            // Could not contact Learn. Wait and retry.
+            this.setBbTimer( this.checkTimeRemainingBeforeTimeout.bind( this ), this.durationBeforeShowingDialog );
+          },
+          dataType : 'json'
+      } );
+    },
+    showDialog : function( timeoutTime )
+    {
+      bb_dialogs.bb_confirm(
+      {
+          title : page.bundle.getString( 'session.timeout.warning.dialog.title' ),
+          html : page.bundle.getString( 'session.timeout.warning.dialog.body' ),
+          buttons : [
+          {
+            text : page.bundle.getString( 'session.timeout.warning.dialog.button.close' )
+          } ],
+          onClose : this.keepBbSessionActiveIfNotTimedOut.bind( this, timeoutTime )
+      } );
+    },
+    keepBbSessionActiveIfNotTimedOut : function( timeoutTime )
+    {
+      if ( new Date().getTime() < timeoutTime )
+      {
+        this.keepBbSessionActive();
+      }
+    },
+    keepBbSessionActive : function()
+    {
+      $j.ajax(
+      {
+          type : "POST",
+          context : this,
+          url : "/learn/api/v1/utilities/keepBbSessionActive",
+          headers :
+          {
+            'X-Blackboard-XSRF' : this.ajaxNonce
+          },
+          contentType : "application/json",
+          success : function( data, status, jqXHR )
+          {
+            // Set new timer
+            this.setBbTimer( this.checkTimeRemainingBeforeTimeout.bind( this ), this.durationBeforeShowingDialog );
+          },
+          error : function( jqXHR, status )
+          {
+            // Most likely the user's session has already timed out. So, refresh the page 
+            // to show his current login state.
+            // If his session is still active, the page reloads the current page.
+            // Otherwise, depending on the page, either they are redirected to the login page
+            // or the Access Denied page.
+            window.location.reload();
+          },
+          dataType : 'json'
+      } );
+    },
+    setBbTimer : function( handler, durationToWait ) 
+    {
+      this.stopBbTimer();
+      let startTime = Date.now();
+      const callHandler = () => {
+        if ( this.timerFunc && ( Date.now() - startTime > durationToWait ) )
+        {
+          this.stopBbTimer();
+          handler();
+        }
+      };
+      this.timerFunc = window.setInterval( callHandler, 15000 );
+      return this.timerFunc;
+    },
+    stopBbTimer : function()
+    {
+      if ( this.timerFunc )
+      {
+        // stop the current timer
+        window.clearInterval( this.timerFunc );
+        this.timerFunc = null;
+      }
+    }
+};

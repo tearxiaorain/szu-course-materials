@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .float-child {
+    float: left;
+    width: 45%;
+    padding: 20px;
+    border: 2px solid red;
+    margin: 10px;
+    background: #ffe4e1;
+  }
+  .parent {
+    background: lightblue;
+    border: 3px solid black;
+    margin: 20px 0;
+    padding: 10px;
+  }
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .status {
+    color: red;
+    font-weight: bold;
+  }
+  .status.fixed {
+    color: green;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  .demo-section {
+    margin: 40px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Clearfix Hack Demonstration</h1>
+  
+  <div class="demo-section">
+    <h2>Without Clearfix</h2>
+    <div class="parent">
+      <div class="status">Parent Collapsed! ❌</div>
+      <div class="float-child">FIRST CHILD FLOAT DIV</div>
+      <div class="float-child">SECOND CHILD FLOAT DIV</div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>With Clearfix</h2>
+    <div class="parent clearfix">
+      <div class="status fixed">Parent Expanded! ✅</div>
+      <div class="float-child">FIRST CHILD FLOAT DIV</div>
+      <div class="float-child">SECOND CHILD FLOAT DIV</div>
+    </div>
+  </div>
+
+  <div style="color: #666; margin-top: 30px;">
+    <p>Notice how:</p>
+    <ul>
+      <li>Without clearfix: Parent border collapses and doesn't contain floated children</li>
+      <li>With clearfix: Parent properly expands to contain all floated children</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

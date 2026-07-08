@@ -1,0 +1,201 @@
+import heapq
+import math
+import jieba
+import os
+
+
+def compute_tf_idf_scores(query_doc, mydict, N):
+    """
+    计算查询文档与所有文档的TF-IDF点积分数
+    :param query_doc: 查询文档字符串
+    :param mydict: 全局倒排索引字典
+    :param N: 文档总数
+    :return: (分数数组, 查询文档向量长度)
+    """
+    scores = [0.0] * (N + 1)  # 初始化分数数组
+    query_len_sq = 0.0  # 查询文档向量长度的平方
+
+    # 统计查询文档的词频
+    query_word_count = {}
+    for word in jieba.cut(query_doc):
+        query_word_count[word] = query_word_count.get(word, 0) + 1
+
+    # 遍历查询文档中的每个词
+    for word, tfI in query_word_count.items():
+        # 只处理存在于全局词典中的词
+        if word in mydict:
+            df = len(mydict[word])
+            idf = math.log(N / df)  # IDF计算
+
+            # 计算查询文档中该词的权重
+            wtfI = math.log10(tfI) + 1 if tfI > 0 else 0
+            weightI = wtfI * idf
+            query_len_sq += weightI * weightI  # 累加到长度平方
+
+            # 遍历包含该词的所有文档
+            for doc_id_j, tfJ in mydict[word].items():
+                # 计算文档j中该词的权重
+                wtfJ = math.log10(tfJ) + 1 if tfJ > 0 else 0
+                weightJ = wtfJ * idf
+                # 累加分数
+                scores[doc_id_j] += weightI * weightJ
+
+    query_len = math.sqrt(query_len_sq) if query_len_sq > 0 else 0.0
+    return scores, query_len
+
+
+def compute_cos_similarity(scores, query_len, doc_lengths):
+    """
+    计算余弦相似度
+    :param scores: TF-IDF点积分数数组
+    :param query_len: 查询文档向量长度
+    :param doc_lengths: 所有文档的向量长度列表
+    :return: 余弦相似度数组
+    """
+    cos_sim = [0.0] * len(scores)
+    for j in range(1, len(scores)):
+        if query_len > 0 and doc_lengths[j] > 0:
+            cos_sim[j] = scores[j] / (query_len * doc_lengths[j])
+        else:
+            cos_sim[j] = 0.0
+        cos_sim[j] = round(cos_sim[j], 2)
+    return cos_sim
+
+
+def get_top_k(cos_sim, k, exclude_index=None):
+    """
+    获取前k个相似文档
+    :param cos_sim: 余弦相似度数组
+    :param k: 返回的结果数量
+    :param exclude_index: 需要排除的文档索引
+    :return: 前k个文档的列表[(文档索引, 相似度)]
+    """
+    heap = []
+    for j in range(1, len(cos_sim)):
+        if exclude_index is not None and j == exclude_index:
+            continue
+        heapq.heappush(heap, (cos_sim[j], j))
+
+    # 获取最大的k个元素
+    top_k = heapq.nlargest(k, heap)
+    return [(doc_id, score) for score, doc_id in top_k]
+
+
+def load_documents_from_folder(folder_path):
+    """从文件夹结构加载文档，返回文档列表和文档ID到原始名称的映射"""
+    documents = []  # 存储文档内容
+    titles = []
+    doc_id_map = {}  # 映射：数字ID -> 原始文件名
+
+    # 遍历主文档文件夹
+    for dir_name in os.listdir(folder_path):
+        dir_path = os.path.join(folder_path, dir_name)
+
+        # 只处理文件夹
+        if not os.path.isdir(dir_path):
+            continue
+
+        # 提取文档ID（前缀数字）
+        doc_id = dir_name.split('_')[0]
+        doc_id_map[len(documents) + 1] = doc_id  # 保存映射关系
+
+        # 读取文件夹内所有.md文件内容
+        content = ""
+        for file_name in os.listdir(dir_path):
+            if file_name.endswith('.md'):
+                titles.append(file_name)
+                file_path = os.path.join(dir_path, file_name)
+                with open(file_path, 'r', encoding='gbk') as f:
+                    content += f.read() + "\n"
+
+        documents.append(content)
+
+    return documents, titles, doc_id_map
+
+
+# ================= 主程序 =================
+if __name__ == "__main__":
+    mydict = {}
+    Docstr = []
+    Title_list = []
+    doc_lengths = [0.0]  # 文档索引从1开始，0位置占位
+
+    # 读取文件并构建索引
+    # with open('d://HW4_2.txt', 'r') as f:
+    #     for doc_id, line in enumerate(f, 1):
+    #         line = line.strip()
+    #         if not line:
+    #             continue
+    #         Docstr.append(line)
+    #
+    #         # 统计当前文档词频
+    #         word_count = {}
+    #         for word in jieba.cut(line):
+    #             word_count[word] = word_count.get(word, 0) + 1
+    #
+    #         # 更新倒排索引
+    #         for word, count in word_count.items():
+    #             if word not in mydict:
+    #                 mydict[word] = {}
+    #             mydict[word][doc_id] = count
+    #
+    # N = len(Docstr)  # 文档总数
+
+    doc_id_map = {}  # 存储文档ID到原始名称的映射
+
+    # 加载文档
+    Docstr, Title_list, doc_id_map = load_documents_from_folder('D:\\深大\\课程\\大二下   课\\信息检索\\大作业\\docs')
+    N = len(Docstr)  # 文档总数
+
+    # 构建倒排索引
+    for doc_id in range(1, N + 1):
+        content = Docstr[doc_id - 1]
+        word_count = {}
+        for word in jieba.cut(content):
+            word_count[word] = word_count.get(word, 0) + 1
+
+        for word, count in word_count.items():
+            if word not in mydict:
+                mydict[word] = {}
+            mydict[word][doc_id] = count
+
+    # 预计算所有文档的向量长度
+    doc_lengths = [0.0] * (N + 1)  # 索引0不使用
+    for doc_id in range(1, N + 1):
+        doc_len_sq = 0.0
+        # 遍历当前文档的所有词
+        for word in set(jieba.cut(Docstr[doc_id - 1])):
+            if word in mydict and doc_id in mydict[word]:
+                tf = mydict[word][doc_id]
+                df = len(mydict[word])
+                idf = math.log(N / df)
+                wtf = math.log10(tf) + 1
+                weight = wtf * idf
+                doc_len_sq += weight * weight
+        doc_lengths[doc_id] = math.sqrt(doc_len_sq) if doc_len_sq > 0 else 0.0
+
+
+    test_q = ["信息","举办","知识","学术","生命","大学"]
+    # test_q = ["联邦","辅助","原型","计算","数据","研究"]
+
+    while True:
+        q = input()
+        # 计算TF-IDF分数
+        scores, query_len = compute_tf_idf_scores(q, mydict, N)
+        # 计算余弦相似度
+        cos_sim = compute_cos_similarity(scores, query_len, doc_lengths)
+        # 打印相似度
+        # for j in range(1, N + 1):
+        #     print(f"{i}与{j}的相似度为{cos_sim[j]:.2f}")
+        # 获取前10个相似文档
+        top10 = get_top_k(cos_sim, k=10)
+        #original_id = doc_id_map.get(i, str(i))
+        print(f"\n与文档“{q}”最相近的10个文档为: ")
+        for doc_id, score in top10:
+            original_target_id = doc_id_map.get(doc_id, str(doc_id))
+            lines = Docstr[doc_id - 1].split("\n")
+            print(f"{original_target_id}: {score:.2f}  “{lines[0]}”")
+        print("\n" + "=" * 50 + "\n")
+
+    # 计算并打印所有文档间的相似度
+    #for i in range(1, 6 + 1):

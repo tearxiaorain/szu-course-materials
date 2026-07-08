@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阅读社区 - 账户登录</title>
+    <style>
+        /* 全局样式 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .account-container {
+            display: flex;
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-section {
+            flex: 1;
+            background: linear-gradient(rgba(38, 117, 252, 0.8), rgba(106, 17, 203, 0.8)), center/cover;
+            color: white;
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .welcome-section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .welcome-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 50px 40px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #777;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: #2575fc;
+            border-bottom: 3px solid #2575fc;
+        }
+
+        .form-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #2575fc;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(37, 117, 252, 0.2);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+            color: #777;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            display: none;
+        }
+
+        .strength-bar {
+            height: 5px;
+            background: #eee;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .strength-bar-inner {
+            height: 100%;
+            width: 0;
+
+        }
+
+        .strength-text {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .strength-weak .strength-bar-inner {
+            width: 33%;
+            background: #ff4757;
+        }
+
+        .strength-medium .strength-bar-inner {
+            width: 66%;
+            background: #ffa502;
+        }
+
+        .strength-strong .strength-bar-inner {
+            width: 100%;
+            background: #2ed573;
+        }
+
+        .strength-weak .strength-text {
+            color: #ff4757;
+        }
+
+        .strength-medium .strength-text {
+            color: #ffa502;
+        }
+
+        .strength-strong .strength-text {
+            color: #2ed573;
+        }
+
+        .error-message {
+            color: #ff4757;
+            font-size: 13px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .btn {
+            width: 100%;
+            background: #2575fc;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #1c68e8;
+        }
+
+        .social-login {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .social-login::before,
+        .social-login::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .social-login::before {
+            left: 0;
+        }
+
+        .social-login::after {
+            right: 0;
+        }
+
+        .social-login p {
+            display: inline-block;
+            background: white;
+            padding: 0 15px;
+            color: #777;
+            position: relative;
+            z-index: 1;
+            font-size: 14px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f7fa;
+            cursor: pointer;
+
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            background: #eef2f7;
+        }
+
+        .social-icon.google {
+            color: #db4437;
+        }
+
+        .social-icon.facebook {
+            color: #4267B2;
+        }
+
+        .social-icon.twitter {
+            color: #1DA1F2;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .form-footer a {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .account-container {
+                flex-direction: column;
+            }
+
+            .welcome-section {
+                padding: 30px 20px;
+            }
+
+            .form-section {
+                padding: 30px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tabs {
+                justify-content: center;
+            }
+
+            .tab {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="account-container">
+        <div class="welcome-section">
+            <h2>欢迎来到阅读社区</h2>
+            <p>加入我们的阅读社区，探索无限好书，与书友分享阅读心得，发现属于你的下一本好书。</p>
+            <p>已有超过50万书友在这里找到了阅读的乐趣。</p>
+        </div>
+
+        <div class="form-section">
+            <div class="tabs">
+                <div class="tab active">登录</div>
+                <div class="tab">注册</div>
+            </div>
+
+            <h2 class="form-title">登录您的账户</h2>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    <div id="email-error" class="error-message">请输入有效的邮箱地址</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">密码</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" placeholder="输入密码" required>
+                        <span class="toggle-password" onclick="togglePassword()">👁️‍🗨️</span>
+                    </div>
+                    <div class="password-strength strength-medium">
+                        <div class="strength-bar">
+                            <div class="strength-bar-inner"></div>
+                        </div>
+                        <div class="strength-text">密码强度: 中</div>
+                    </div>
+                    <div id="password-error" class="error-message">密码不正确</div>
+                </div>
+
+                <div class="form-footer">
+                    <a href="#">忘记密码?</a>
+                </div>
+
+                <button type="submit" class="btn">登录</button>
+
+                <div class="social-login">
+                    <p>或使用以下方式登录</p>
+                    <div class="social-icons">
+                        <div class="social-icon google">
+                            <svg t="1749954344962" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="7637" width="200" height="200">
+                                <path
+                                    d="M512 73.28A438.72 438.72 0 1 0 950.72 512 438.72 438.72 0 0 0 512 73.28zM759.84 646.4c-9.6 8.16-20.8-6.08-29.76-20.32s-14.88-26.72-16-21.76a158.4 158.4 0 0 1-37.44 70.72c-1.28 1.6 28.8 12.48 37.44 35.68s24 57.6-80 68.8a145.76 145.76 0 0 1-80-16c-16.96-8.32-27.52-16-29.6-16a73.6 73.6 0 0 1-13.28 0 108 108 0 0 1-14.4 0c-1.76 0-22.24 32-113.12 32-70.4 0-88.64-44.32-74.4-68.8s37.76-32 34.4-35.36a192 192 0 0 1-34.4-57.6 98.56 98.56 0 0 1-4.16-13.44c-1.28-4.64-6.56 8.64-13.92 21.76s-14.4 22.72-22.88 22.72a11.52 11.52 0 0 1-6.56-2.4c-20.96-16-19.2-55.2-5.44-93.12s48-75.04 48-83.2c1.28-30.24-3.04-35.2 0-43.2 6.56-17.76 14.72-10.88 14.72-20.16 0-116.32 86.4-210.56 192.96-210.56s192.96 94.24 192.96 210.56c0 4.48 11.68 0 17.12 20.16a196.96 196.96 0 0 1 0 43.2c0 11.04 29.44 24.48 44.8 83.2S768 640 759.84 646.4z"
+                                    fill="#68A5E1" p-id="7638"></path>
+                            </svg>
+                        </div>
+                        <div class="social-icon facebook">
+                            <svg t="1749954408897" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="8673" width="200" height="200">
+                                <path
+                                    d="M669.806592 407.742464c9.547776 0 19.083264 0.794624 28.63104 1.5872-26.249216-122.486784-154.300416-213.157888-300.652544-213.157888-163.85024 0-298.27072 113.74592-298.27072 258.510848 0 82.724864 44.541952 151.12192 119.30624 204.417024l-29.42976 91.467776 103.40352-53.295104c37.376 7.151616 67.598336 15.126528 104.99072 15.126528 8.740864 0 18.290688 0 27.838464-0.796672-6.36928-20.688896-9.547776-42.170368-9.547776-63.65184C416.077824 515.131392 528.232448 407.742464 669.806592 407.742464L669.806592 407.742464zM509.1328 325.042176c22.276096 0 37.390336 15.097856 37.390336 38.172672 0 23.07072-15.11424 38.170624-37.390336 38.170624-22.263808 0-44.541952-15.101952-44.541952-38.170624C464.592896 340.140032 486.868992 325.042176 509.1328 325.042176L509.1328 325.042176zM300.740608 401.385472c-22.263808 0-44.541952-15.101952-44.541952-38.170624 0-23.074816 22.278144-38.172672 44.541952-38.172672 22.278144 0 37.390336 15.097856 37.390336 38.172672C338.132992 386.285568 323.018752 401.385472 300.740608 401.385472L300.740608 401.385472z"
+                                    fill="#010102" p-id="8674"></path>
+                                <path
+                                    d="M941.029376 643.97312c0-120.897536-118.515712-220.311552-252.936192-220.311552-141.570048 0-252.932096 99.414016-252.932096 220.311552 0 121.69216 111.362048 220.342272 252.932096 220.342272 30.22848 0 59.654144-7.979008 89.880576-15.128576l81.135616 45.350912-22.278144-75.575296C896.485376 772.847616 941.029376 712.398848 941.029376 643.97312L941.029376 643.97312zM606.175232 605.804544c-15.112192 0-29.427712-14.30528-29.427712-30.226432 0-15.126528 14.31552-30.224384 29.427712-30.224384 22.263808 0 37.376 15.097856 37.376 30.224384C643.551232 591.497216 628.43904 605.804544 606.175232 605.804544L606.175232 605.804544zM770.025472 605.804544c-15.112192 0-29.427712-14.30528-29.427712-30.226432 0-15.126528 14.31552-30.224384 29.427712-30.224384 22.265856 0 37.376 15.097856 37.376 30.224384C807.401472 591.497216 792.291328 605.804544 770.025472 605.804544L770.025472 605.804544z"
+                                    fill="#010102" p-id="8675"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-footer">
+                    还没有账户? <a href="#">立即注册</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        // 切换密码可见性
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = '👁️';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = '👁️‍🗨️';
+            }
+        }
+
+        // 密码强度检测
+        document.getElementById('password').addEventListener('input', function () {
+
+            const password = this.value;
+            let strength = 0;
+
+            const strengthContainer = document.querySelector('.password-strength');
+            const strengthBar = document.querySelector('.strength-bar-inner');
+            const strengthText = document.querySelector('.strength-text');
+
+            // 重置样式
+            strengthContainer.classList.remove('strength-weak', 'strength-medium', 'strength-strong');
+
+            if (password.length === 0) {
+                strengthBar.style.width = '0';
+                strengthText.textContent = '';
+                return;
+            }
+
+            // 检查长度
+            if (password.length >= 8) strength += 1;
+            // 检查小写字母
+            if (password.match(/[a-z]+/)) strength += 1;
+            // 检查大写字母
+            if (password.match(/[A-Z]+/)) strength += 1;
+            // 检查数字
+            if (password.match(/[0-9]+/)) strength += 1;
+            // 检查特殊字符
+            if (password.match(/[$@#&!,./;:]+/)) strength += 1;
+
+            // 根据强度设置样式
+            if (strength <= 2) {
+                strengthContainer.classList.add('strength-weak');
+                strengthBar.style.width = '33%';
+                strengthText.textContent = '密码强度: 弱';
+            } else if (strength <= 4) {
+                strengthContainer.classList.add('strength-medium');
+                strengthBar.style.width = '66%';
+                strengthText.textContent = '密码强度: 中';
+            } else {
+                strengthContainer.classList.add('strength-strong');
+                strengthBar.style.width = '100%';
+                strengthText.textContent = '密码强度: 强';
+            }
+        });
+
+        // 邮箱实时验证
+        document.getElementById('email').addEventListener('blur', function () {
+            const email = this.value;
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const errorElement = document.getElementById('email-error');
+
+            if (!re.test(email)) {
+                errorElement.style.display = 'block';
+            } else {
+                errorElement.style.display = 'none';
+            }
+        });
+
+        // 表单提交处理
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // 模拟登录处理
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordError = document.getElementById('password-error');
+            alert('登录成功！即将跳转到首页...');
+        });
+
+        // 标签切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                const strengthContainer = document.querySelector('.password-strength');
+
+                if (this.textContent === '注册') {
+                    strengthContainer.style.display = "block";
+                    document.querySelector('.form-title').textContent = '创建新账户';
+                    document.querySelector('.btn').textContent = '注册';
+                    document.querySelector('.form-footer a').textContent = '已有账户? 立即登录';
+                    document.querySelector('.form-footer').innerHTML = '已有账户? <a href="#">立即登录</a>';
+                } else {
+                    strengthContainer.style.display = "none";
+                    document.querySelector('.form-title').textContent = '登录您的账户';
+                    document.querySelector('.btn').textContent = '登录';
+                    document.querySelector('.form-footer').innerHTML = "<a href='#''>忘记密码?</a>";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

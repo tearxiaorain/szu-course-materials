@@ -1,0 +1,56 @@
+<?php
+// register.php  注册页面显示
+// ...existing code...
+include 'conn.php'; // 现在 $conn 可用
+if (!$conn || $conn->connect_error) {
+    // 连接失败的处理
+    echo '数据库连接失败';
+    exit;
+}
+else{
+    //echo'数据库连接成功';
+}
+?>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>注册</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; background:#f6f8fa; }
+        .container { max-width:420px; margin:60px auto; background:#fff; padding:24px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+        h2 { margin-top:0; }
+        label { display:block; margin-top:12px; font-size:14px; }
+        input { width:100%; padding:10px; margin-top:6px; box-sizing:border-box; border:1px solid #dcdfe6; border-radius:4px; }
+        button { margin-top:18px; width:100%; padding:10px; background:#007bff; color:#fff; border:0; border-radius:4px; cursor:pointer; }
+        button:hover { background:#0069d9; }
+        .hint { margin-top:12px; font-size:13px; color:#666; }
+        a { color:#007bff; text-decoration:none; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>创建账户</h2>
+
+    <!-- 表单通过 POST 提交到 save_user.php -->
+    <form method="post" action="save_user.php">
+        <label for="username">用户名</label>
+        <input type="text" id="username" name="username" required maxlength="100" placeholder="请输入用户名">
+
+        <label for="phone">手机号</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" placeholder="11位手机号" required>
+
+        <label for="email">邮箱</label>
+        <input type="email" id="email" name="email" required placeholder="example@domain.com">
+
+        <label for="password">密码</label>
+        <input type="password" id="password" name="password" required minlength="6" placeholder="至少6位密码">
+
+        <button type="submit">注册</button>
+    </form>
+
+    <p class="hint">已有账号？ <a href="login.php">去登录</a></p>
+</div>
+</body>
+</html>
