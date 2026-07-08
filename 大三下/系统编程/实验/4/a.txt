@@ -1,0 +1,50 @@
+一、 实验目标：
+
+1.	熟悉文件控制相关的Linux操作系统的系统调用
+2.	了解并掌握相关系统调用的应用程序编写
+
+二、实验环境与工件
+
+1.	Taishan服务器，openEuler操作系统
+
+三、实验内容与步骤
+
+1、	请阅读、编写并调试附件中的reverse.c程序,使其满足以下用法和功能。请完成以下工作：1）解释每个过程函数的功能；2)在自已的姓名学号账号下运行并截图运行结果，如果程序有错，请截图注明修正代码及其原因（40分）。
+用法： reverse –c [filename]
+作用：将从文件filename (或标准输入)读入的每一行翻转并打印到标准输出； 如果用了-c选项，reverse 也讲每行的字符翻转。
+
+2、	请阅读、编写并调试附件中的monitor.c程序,使其满足以下用法和功能。请完成以下工作：1）解释每个过程函数的功能；2)在自已的姓名学号账号下运行并截图运行结果，如果程序有错，请截图注明修正代码及其原因（40分）。
+用法： monitor [-t delay] [-l count] {filename}+
+作用：每delay秒扫描所有指定的文件并将从上次扫描以来更新过的文件的信息打印出来。如果文件名filename是一个目录，该目录中所有的文件都将被扫描。
+以下是环境配置和monitor的用法与用例。
+   $mkdir filecontrol
+$ ls                         // 查看filecontrol目录. 
+   monitor.c        monitor            tmp/ 
+   $ls ./tmp                     //查看 “tmp” 目录.
+   b 
+   $monitor  tmp  myFile.txt >& monitor.out  &  //开始监控.
+   [1] 12841 
+   $cat > ./tmp/a                 //在./tmp下创建一个文件. 
+   hi there 
+   ctrl-D 
+   $cat > myFile.txt              //创建 “myFile.txt”.  
+   hi there 
+   ctrl-D 
+$rm ./tmp/a                  //删除 “./tmp/a”. 
+   $jobs                        //查看正在运行的作业. 
+   [1] + Running   monitor  tmp  myFile.txt >& monitor.out 
+   $kill   %1                   //kill “monitor” 作业. 
+   [1] Terminated  monitor tmp   myFile.txt >& monitor.out 
+   $cat monitor.out               //查看输入文件. 
+   ADDED  tmp/b  size 9 bytes, mod. time = Sun Jan 18 00:38:55  2017
+   ADDED  tmp/a  size 9 bytes, mod. Time = Fri Feb 13  18:51:09 2017
+   ADDED  myFile.txt  size 9 bytes, mod. Time = Fri Feb 13  18:51:21 2017
+   CHANGED  myFile.txt  size 18 bytes, mod. Time = Fri Feb 13 18:51:49 2017
+   DELETED tmp/a
+   $
+3、	  有四个线程1、2、3、4.线程1的功能就是输1,线程2的功能就是输出2,以此类推……现在有四个文件ABCD.初始都为空。现要让四个文件呈如下格式：
+    A:1 22 333 44441 22 333 4444…
+    B: 22 333 4444 1 22 333 4444 1…
+    C: 333 4444 1 22 333 4444 1 22…
+    D: 44441 22 333 44441 22 333…
+请设计程序，附上代码截图及运行结果截图。（Google面试题改编）（20分）

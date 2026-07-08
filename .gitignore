@@ -1,0 +1,47 @@
+# IDE
+.idea/
+.vscode/
+.continue/
+*.swp
+*.swo
+*~
+
+# 编译产物
+*.o
+*.obj
+*.exe
+*.out
+*.class
+*.elf
+*.d
+*.asm
+*.sym
+build/
+dist/
+target/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+
+# 压缩包
+*.zip
+*.rar
+*.7z
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 备份
+*backup*/
+*备份*/
+
+# 临时文件
+*.tmp
+~$*
